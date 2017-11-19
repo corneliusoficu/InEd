@@ -1,0 +1,76 @@
+body{
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-size: 40px;
+    font-variant: normal;
+    font-style: normal;
+    font-weight: 100;
+}
+
+h2{
+    margin-top: 300px;
+    margin-bottom: 0;
+}
+
+h6{
+    margin: 0;
+}
+
+a{
+    font-size: 20px;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/blurred_graph.jpg");
+    /* background-color: black; */
+}
+
+.section-top{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    background-color: rgba(247, 183, 51, 0.6);
+
+}
+
+.section-content{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center
+    /* background-color: yellow; */
+}
+
+.ghost-button {
+    display: inline-block;
+    width: 150px;
+    padding: 8px;
+    color: rgb(0, 0, 0);
+    border-radius: 100px;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 700ms;
+    margin-top: 30px;
+    
+}
+
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #f7B733;
+  color: #000;
+  border: 1px solid #f7B733;
+}
+
+.logo{
+    height: 100%;
+    text-align: center;
+}
