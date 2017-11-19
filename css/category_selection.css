@@ -1,0 +1,68 @@
+h2{
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+a{
+    font-size: 20px;
+}
+
+.category{
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+    
+}
+
+.square{
+    position: relative;
+    width: 250px;
+    padding-bottom: 250px;
+    margin: 1.66%;
+    overflow: hidden;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 300ms;
+}
+
+.square:hover,
+.square:active {
+  color: #000;
+  border: 1px solid #f7B733;
+}
+
+.content{
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    padding: 10% 5%;
+    
+}
+
+.ghost-button {
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    width: 150px;
+    padding: 8px;
+    color: rgb(0, 0, 0);
+    border-radius: 100px;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 700ms;
+    margin-top: 30px;
+    text-align: center;
+    
+}
+
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #f7B733;
+  color: #000;
+  border: 1px solid #f7B733;
+}
+

@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-size: 40px;
+    font-variant: normal;
+    font-style: normal;
+    font-weight: 100;
+}
+
+h6{
+    margin: 0;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/blurred_graph.jpg");
+    /* background-color: black; */
+}
+
+.section-top{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+
+}
+
+.section-content{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+}
+
+.logo{
+    height: 100%;
+    text-align: center;
+}
