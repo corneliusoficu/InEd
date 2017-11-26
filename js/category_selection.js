@@ -7,9 +7,19 @@ for(var index = 0; index < square_button_categories.length; index++){
 function selectSubCategory(e){
     var currentTarget = e.currentTarget;
     var parent = currentTarget.parentElement;
-    if(parent.id == 'map'){
-        window.location.href = "sub_category_selection.html";
-    }else{
+
+    switch(parent.id){
+        case 'map':
+            window.location.href = "sub_category_selection.html";
+            break;
+        case 'map-continent':
+            window.location.href = "input_selection.html";
+            break;
+        case 'map-country':
+            window.location.href = "input_selection.html";
         
     }
+
+
+
 }
