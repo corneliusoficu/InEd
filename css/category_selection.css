@@ -20,7 +20,7 @@ a{
     padding-bottom: 250px;
     margin: 1.66%;
     overflow: hidden;
-    border: 1px solid rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 20px;
     outline: none;
     transition: border-color 300ms;
@@ -29,7 +29,7 @@ a{
 .square:hover,
 .square:active {
   color: #000;
-  border: 1px solid #f7B733;
+  border: 2px solid #f7B733;
 }
 
 .content{
