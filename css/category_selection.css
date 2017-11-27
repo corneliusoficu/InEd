@@ -64,11 +64,17 @@ a.inline-button {
     
 }
 
-.ghost-button:hover,
-.ghost-button:active {
+.ghost-button:not(.nohover):hover,
+.ghost-button:not(.nohover):active {
   background-color: #f7B733;
   color: #000;
   border: 1px solid #f7B733;
+}
+
+.ghost-button-selected{
+    background-color: #f7B733;
+    color: #000;
+    border: 1px solid #f7B733;
 }
 
 

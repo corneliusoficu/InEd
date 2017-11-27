@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="css/layout.css">
         <link rel="stylesheet" href="css/category_selection.css">
+        <link rel="stylesheet" href="css/data_selection.css">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans:lighter">
         <title>Input data</title>
     </head>
@@ -11,12 +12,34 @@
                 <img class="logo" src='img/logo_ined.png'/>
             </div>
             <div class="section-content">
-                <h3>Select the data source</h3>
-                <a href="#" class="ghost-button inline-button">API</a>
-                <a href="#" class="ghost-button inline-button">CSV</a>
-                <a href="#" class="ghost-button inline-button">XLS</a>
-                <a href="#" class="ghost-button inline-button">JSON</a>
+
+                <div class="data-type">
+                    <h3>Select the data source</h3>
+                    <a href="#" class="ghost-button nohover inline-button radio-button">API</a>
+                    <a href="#" class="ghost-button nohover inline-button radio-button">CSV/XLS</a>
+                    <a href="#" class="ghost-button nohover inline-button radio-button">JSON</a>
+                </div>
+
+                <div class="data-content">
+                
+                    <div class="form-content">
+                        <form action="#">
+                                <div class="form-group">
+                                    <label for="api">API URI Endpoint:</label>
+                                    <input type="text" class="required" id='api' name="api" autofocus>
+                                </div>
+
+                        </form>
+                    </div>
+                        
+                    <div class="form-buttons">
+                        <a href="category_selection.html" id="back-button" class="ghost-button inline-button">Back</a>
+                        <a href="#" id="submit-button" class="ghost-button inline-button">Submit</a>
+                    </div>
+
+                </div>
             </div>
         </div>
+        <script src="js/data_selection.js"></script>
     </body>
 </html>

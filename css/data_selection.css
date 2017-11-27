@@ -1,0 +1,49 @@
+h6{
+    font-size: 20px;
+}
+
+.data-type{
+    width: 100%;
+    height: 240px;
+    position: absolute;
+    
+}
+
+.data-content{
+    position: absolute;
+    top: 240px;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.form-content{
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    right: 100px;
+    bottom: 70px;
+    /* background: white; */
+}
+
+.form-buttons{
+    position: absolute;
+    left:100px;
+    height: 70px;
+    right: 100px;
+    bottom: 50px;
+    /* background-color: blue; */
+}
+
+input{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    text-align:left;
+}
+
+label{
+    font-size: 30px;
+}
