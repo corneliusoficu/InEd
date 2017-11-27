@@ -18,6 +18,7 @@ function selectSubCategory(e){
             break;
         case 'map-country':
             window.location.href = "input_selection.html?category=map&subcategory=country";
+            break;
         default:
             window.location.href = "data_selection.html";
             break;
