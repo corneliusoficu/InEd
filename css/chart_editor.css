@@ -1,0 +1,77 @@
+p{
+	margin:0;
+	font-size:14px;
+}
+h3{
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 30px;
+}
+.section-content{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.drawing-surface{
+	float: left;
+	height: 80vh;
+	width: calc(100% - 290px);
+	background-color:white;
+
+}
+	.drawing-surface img{
+		height: 100%;
+		width: 100%;
+	}
+.editor-surface{
+	width:250px;
+	margin-left: 20px;
+	float: left;
+	background-color:#645C5A;
+	opacity: 0.5;
+	height: 80%;
+	overflow-y: scroll;
+}
+	.editor-surface h4{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.editor-surface .chart-slice{
+		display: inline-block;
+		width: 100%;
+		margin-left: 20px;
+	}
+	.editor-surface .chart-slice .color-input{
+		float:left;
+	}
+	.editor-surface .chart-slice p{
+		text-align: left;
+		width: 90px;
+		float:left;
+		color:white;
+		font-size:17;
+		line-height: 1.5;
+		font-weight: 500;
+		margin-left: 10px;
+	}
+	.editor-surface .chart-slice .percentage-input{
+		margin-left: 10px;
+		float:left;
+		height: 23px;
+		width: 38px;
+	}
+
+
+
+.square{
+    overflow: hidden;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 300ms;
+}
+
+.square:hover,
+.square:active {
+  color: #000;
+  border: 2px solid #f7B733;
+}
