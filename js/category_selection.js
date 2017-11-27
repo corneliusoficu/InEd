@@ -9,17 +9,19 @@ function selectSubCategory(e){
     var parent = currentTarget.parentElement;
 
     switch(parent.id){
+
         case 'map':
             window.location.href = "sub_category_selection.html";
             break;
         case 'map-continent':
-            window.location.href = "input_selection.html";
+            window.location.href = "input_selection.html?category=map&subcategory=continent";
             break;
         case 'map-country':
-            window.location.href = "input_selection.html";
+            window.location.href = "input_selection.html?category=map&subcategory=country";
         
     }
 
+    
 
 
 }

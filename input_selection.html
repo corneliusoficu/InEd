@@ -1,10 +1,10 @@
 <html>
     <head>
-        <link rel="stylesheet" href="css/layout.css">
-        <link rel="stylesheet" href="css/category_selection.css">
-        <link rel="stylesheet" href="css/input_selection.css">
+        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <link rel="stylesheet" type="text/css" href="css/category_selection.css">
+        <link rel="stylesheet" type="text/css" href="css/input_selection.css">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans:lighter">
-        <title>Name the country</title>
+        <title>Search</title>
     </head>
     <body>
         <div class="container">
@@ -13,17 +13,22 @@
             </div>
 
             <div class="section-content">
-                <h2>Type the name of the country: </h2>
+                <h2 id='input-message'></h2>
                 <div class="large-form-input">
-                    <form autocomplete="off" action="#">
-                        <input type="text" name="input-selection" placeholder="Search" autofocus>
+
+                    <form id="search-form" autocomplete="off" action="#">
+                        <input type="text" id='search' name="search" placeholder="Search" autofocus>
                     </form>
-                    <a href="sub_category_selection.html" class="ghost-button inline-button">Back</a>
-                    <a href="#" class="ghost-button inline-button">Continue</a>
                 
+                    <a href="sub_category_selection.html" class="ghost-button inline-button">Back</a>
+                    <a href="data_selection.html" onclick="return validateFormInput();" class="ghost-button inline-button" id="continue-button">Continue</a>
+                    <h6 class="validation-text" id="validation-text"></h3>
                 </div>
             </div>
 
         </div>
+
+        <script src="js/input_validation.js"></script>
+        <script src="js/input_selection.js"></script>
     </body>
 </html>
