@@ -12,6 +12,9 @@ h3{
 	margin-right: 20px;
 }
 .drawing-surface{
+	overflow: hidden;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
 	float: left;
 	height: 80vh;
 	width: calc(100% - 290px);
@@ -53,25 +56,9 @@ h3{
 		font-weight: 500;
 		margin-left: 10px;
 	}
-	.editor-surface .chart-slice .percentage-input{
+	.editor-surface .chart-slice .count-input{
 		margin-left: 10px;
 		float:left;
 		height: 23px;
 		width: 38px;
 	}
-
-
-
-.square{
-    overflow: hidden;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 20px;
-    outline: none;
-    transition: border-color 300ms;
-}
-
-.square:hover,
-.square:active {
-  color: #000;
-  border: 2px solid #f7B733;
-}

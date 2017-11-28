@@ -1,94 +1,52 @@
+var chartData = {
+	"Audi":{label:"Audi",color:undefined,count:30},
+	"BMW":{label:"BMW",color:"#4C991A",count:20},
+	"Honda":{label:"Honda",color:"#781A99",count:10}
+
+};
 
 
-function setAttributes(el, attrs) {
-  for(var key in attrs) {
-    el.setAttribute(key, attrs[key]);
-  }
-}
-
-var chartData = [ 
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-
-		{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-
-	{name:"Audi",color:"#D15E41",percentage:30},
-	{name:"BMW",color:"#4C991A",percentage:20},
-	{name:"Honda",color:"#781A99",percentage:10},
-];
-console.log(chartData);
-function updateChartData(){
-	var newChartData = [];
-	var slices = document.getElementsByClassName('chart-slice');
-	for (var i = 0 ; i < slices.length ; i++){
-		var name = slices[i].querySelector('p').innerHTML;
-		var color = slices[i].querySelector('.color-input').value;
-		var percentage = slices[i].querySelector('.percentage-input').value;
-		newChartData.push({ name:name , color:color,percentage:percentage});
-	}
-	chartData = newChartData;
-	console.log(chartData);
-}
-
-function populateEditProperties(data){
-	console.log("In edit");
+function populateEditSurface(data){
 	var editor = document.getElementsByClassName('editor-surface')[0];
-	for(var i = 0 ; i < data.length ; i++){
+	for(var key in data){
 		var newSlice = document.createElement("div");
-		newSlice.setAttribute('class','chart-slice');
+		setAttributes(newSlice,{'class':'chart-slice','id':key});
 
-		var sliceName = document.createElement("p");
-		var text = document.createTextNode(data[i].name);  
-		sliceName.appendChild(text);
+		var sliceLabel = document.createElement("p");
+		var text = document.createTextNode(key);  
+		sliceLabel.appendChild(text);
 
 		var colorInput = document.createElement("input");
-		setAttributes(colorInput,{"class":"color-input","type":"color","value":data[i].color});
+		setAttributes(colorInput,{"class":"color-input","type":"color","value":data[key].color});
 
-
-		var percentageInput = document.createElement("input");
-		setAttributes(percentageInput,{
-			"class":"percentage-input","type":"number","min":0,"max":100,"step":"0.1","value":data[i].percentage});
-
-		newSlice.appendChild(sliceName);
+		var countInput = document.createElement("input");
+		setAttributes(countInput,{
+			"class":"count-input","type":"number","value":data[key].count});
+		newSlice.appendChild(sliceLabel);
 		newSlice.appendChild(colorInput);
-		newSlice.appendChild(percentageInput);
-
-
-
-
+		newSlice.appendChild(countInput);
 		editor.appendChild(newSlice);	
 	}
-	for(var i = 0 ; i < data.length ; i++){
-		var newSlice = document.createElement("div");
+	//Update chartData on change of any field in the chart editor
+	var slices = document.getElementsByClassName('chart-slice');
+	for( var i = 0 ; i < slices.length ; i++){
+		slices[i].querySelector('.color-input').onchange = function(){
+			chartData[this.parentNode.id].color = this.value;
+			updateChart();
+		}
+		slices[i].querySelector('.count-input').onchange = function(){
+			chartData[this.parentNode.id].count = this.value;
+			updateChart();
+		}
 	}
-	colorInput.onchange = updateChartData();
-	percentageInput.onchange = updateChartData();
+}
+function updateChart(){
+	var drawing_surface = document.getElementsByClassName('drawing-surface')[0];
+	drawing_surface.innerHTML = "";
+	chartData = renderPieChart(chartData,drawing_surface,500);
 }
 
-
-populateEditProperties(chartData);
+var drawing_surface = document.getElementsByClassName('drawing-surface')[0];
+chartData =renderPieChart(chartData,drawing_surface,500);
+populateEditSurface(chartData);
 		
