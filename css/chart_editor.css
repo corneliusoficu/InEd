@@ -9,26 +9,9 @@ h3{
     padding-bottom: 30px;
 }
 
-.drawing-surface{
-	overflow: hidden;
-	float: left;
-	height: 100%;
-	width:100%;
-	background-color:white;
-
-}
-
 .drawing-surface img{
 	height: 100%;
 	width: 100%;
-}
-
-.editor-surface{
-	width:250px;
-	margin-left: 20px;
-	float: left;
-	background-color:#645C5A;
-	height: 80%;
 }
 
 .editor-surface h4{
