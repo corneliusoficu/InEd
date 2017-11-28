@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Infographics Web Editor - Scholarly Raport</title>
+    <link rel="stylesheet" href="schlarly.css">
+    <link rel="stylesheet" href="http://scholarly.vernacular.io/scholarly.css">
+    <script src="node_modules/prismjs/prism.js" defer></script>
+  </head>
+  <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+    <header><p class="title">Ia - Scholary Raport</p></header>
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+      <h1>Infographics Web Editor</h1>
+      <section>
+        <ol>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="https://github.com/corneliusoficu" typeof="schema:Person">
+							<span property="schema:familyName">Corneliu</span>
+              <span property="schema:givenName">Soficu</span>
+            </a>
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"></a>
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+            </sup>
+          </li>
+          <li property="schema:contributor" typeof="sa:ContributorRole">
+            <a property="schema:contributor" href="https://github.com/codrinharpa" typeof="schema:Person">
+							<span property="schema:familyName">Codrin</span>
+              <span property="schema:givenName">Harpa</span>
+            </a>
+            <a href="#scienceai" property="sa:roleAffiliation" resource="http://science.ai/"></a>
+          </li>
+        </ol>
+        <ol>
+          <a href="https://www.info.uaic.ro/bin/Main/">
+            <span property="schema:name">Facultatea de Informatică Iași, Universitatea "Alexandru Ioan Cuza"</span>
+          </a>
+        </ol>
+      </section>
+      <section typeof="sa:Abstract" id="abstract">
+        <h2>Cuprins</h2>
+        <p>1. Descriere</p>
+        <p>2. Design General</p>
+        <p>3. Interactiune cu utilizatorul</p>
+        <p>4. Arhitectura si stocare date</p>
+        <p>5. Verionare</p>
+        <p>6. Resurse</p>
+      </section>
+      <section typeof="sa:MaterialsAndMethods" id="motivation">
+        <h2>Descriere</h2>
+    		<p>Aplicația <strong>Infographics Web Editor</strong> este menită să
+					ofere o interfata prietenoasa prin care utilizatorii pot genera si edita diverse grafice. <p>
+				<p>Aceasta primeste de la utilizator o sursa de date, care poate fi vizualizata in functie de preferintele utilizatorului, iar mai apoi descarcata intr-un format PNG sau SVG.</p>
+				<p>Utilizatorul va putea efectua diverse modificari asupra fiecarui tip de grafic disponibil.Ii va putea schimba culorile, sau modul in care sunt afisate datele prin reprezentarea acestora.</p>
+				<p><a href="https://vimeo.com/">Filmuleț demonstrativ.</a></p>
+	</section>
+	<section typeof="sa:MaterialsAndMethods">
+      <h2>Design General</h2>
+      	<p>Prima pagina a aplicatiei pune la dispozitia utilizatorului posibilitatea de a a selecta tipul de infografic pe care il doreste sa il genereze.</p>
+		<figure typeof="sa:Image">
+			<img src="welcome-page.png">
+			<figcaption>
+				Prima pagina
+			</figcaption>
+		</figure>
+	<figure typeof="sa:Image">
+
+	<p>La urmatorul pas, se face selectarea sursei de date. Aceasta poate fi endpointul catre un API sau unploadul unui fisier CSV sau JSON.</p>
+			<img src="upload.png">
+			<figcaption>
+				Pagina Upload
+			</figcaption>
+		</figure>
+	<figure typeof="sa:Image">
+
+	<p>Ultimul pas este generarea efectiva a infogramei si editarea acesteia. De aici, acesta poate sa o modifice usor din panelul din dreapta.</p>
+			<img src="graph-edit.png">
+			<figcaption>
+				Editarea Infograficului
+			</figcaption>
+		</figure>
+			
+	</section>
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>Interactiune cu utilizatorul</h2>
+				<p> 	Maniera de interactiune cu utilizatorul este una cursiva, acesta avand un traseu bine stabilit de urmat pentru a ajunge la rezultatul final.</p>
+				<p> 	Butoanele mari si clare dar si designul minimalist fac usor de folosit aplicatia, care incorporeaza diverse functionalitati fara a pune in incurcatura utilizatorul.</p>
+			</section>
+			
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>Arhitectura si stocare date</h2>
+				<p> Sursa de date selectata de utilizator este incarcata in memorie, pe partea clientului, nefiind nevoie de un upload efectiv carte un server.
+				</p>
+				<p> Arhitectura aplicatiei este una de tip serverless, aceasta fiind construita ca un SPA (Single Page Aplication). Pentru a afisa diferite sectiuni de continut, site-ul foloseste un mecanism propriu implementat in JavaScript de injectare a continutului fisierelor partiale HTML in interiorul paginii principale(SPA).
+				</p>
+			</section>
+			<section typeof="sa:MaterialsAndMethods">
+	      <h2>Versionare</h2>
+				<p>Am folosit <strong>GitHub</strong> pe post de repository al proiectului. Am utilizat
+					<strong>Git Bash</strong> pentru a rezolva conflictele și pentru a face modicări/adăugări/ștergeri
+					a unui sau a mai multor fișiere	din cadrul repository-ului.</p>
+			</section>
+
+		</article>
+  </body>
+</html>
