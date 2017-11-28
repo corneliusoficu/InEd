@@ -7,7 +7,7 @@ var chartData = {
 
 
 function populateEditSurface(data){
-	var editor = document.getElementsByClassName('content-edit')[0];
+	var editor = document.getElementById('properties-panel');
 	for(var key in data){
 		var newSlice = document.createElement("div");
 		setAttributes(newSlice,{'class':'chart-slice','id':key});
@@ -27,6 +27,7 @@ function populateEditSurface(data){
 		newSlice.appendChild(countInput);
 		editor.appendChild(newSlice);	
 	}
+
 	//Update chartData on change of any field in the chart editor
 	var slices = document.getElementsByClassName('chart-slice');
 	for( var i = 0 ; i < slices.length ; i++){
@@ -40,6 +41,7 @@ function populateEditSurface(data){
 		}
 	}
 }
+
 function updateChart(){
 	var drawing_surface = document.getElementsByClassName('drawing-surface')[0];
 	drawing_surface.innerHTML = "";
