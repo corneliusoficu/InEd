@@ -7,7 +7,7 @@ var chartData = {
 
 
 function populateEditSurface(data){
-	var editor = document.getElementsByClassName('editor-surface')[0];
+	var editor = document.getElementsByClassName('content-edit')[0];
 	for(var key in data){
 		var newSlice = document.createElement("div");
 		setAttributes(newSlice,{'class':'chart-slice','id':key});
