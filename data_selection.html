@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="css/category_selection.css">
         <link rel="stylesheet" href="css/data_selection.css">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans:lighter">
+        <link rel="stylesheet" href="res/font-awesome/css/font-awesome.min.css">
         <title>Input data</title>
     </head>
     <body>
@@ -15,26 +16,37 @@
 
                 <div class="data-type">
                     <h3>Select the data source</h3>
-                    <a href="#" class="ghost-button nohover inline-button radio-button">API</a>
-                    <a href="#" class="ghost-button nohover inline-button radio-button">CSV/XLS</a>
-                    <a href="#" class="ghost-button nohover inline-button radio-button">JSON</a>
+                    <a href="#" id='api' class="ghost-button nohover inline-button radio-button">API</a>
+                    <a href="#" id='csv' class="ghost-button nohover inline-button radio-button">CSV/XLS</a>
+                    <a href="#" id='json' class="ghost-button nohover inline-button radio-button">JSON</a>
                 </div>
 
                 <div class="data-content">
                 
-                    <div class="form-content" hidden>
-                        <form action="#">
+                    <div class="form-content" id="api-form">
                             <div class="form-group">
                                 <label for="api">API URI Endpoint:</label>
-                                <input type="text" class="required" id='api' name="api" autofocus>
+                                <input type="text" class="required line-input" id='api' name="api" autofocus>
                             </div>
-
-                        </form>
                     </div>
+
+                    <div class="form-content" id="csv-form">
+                        <div class="form-group">
+                            <input type="file" accept=".csv, .xls, .xlsx" class="required inputfile" name="file" id='file-upload-csv'>
+                            <label for="file-upload-csv" class="file-upload-label"><i class="fa fa-upload upload-icon" aria-hidden="true"></i>Choose a file</label>
+                        </div>
+                    </div>
+
+                    <div class="form-content" id="json-form">
+                            <div class="form-group">
+                                <input type="file" accept=".json" class="required inputfile" name="file" id='file-upload-json'>
+                                <label for="file-upload-json" class="file-upload-label"><i class="fa fa-upload upload-icon" aria-hidden="true"></i>Choose a file</label>
+                            </div>
+                        </div>
                         
                     <div class="form-buttons">
                         <a href="category_selection.html" id="back-button" class="ghost-button inline-button">Back</a>
-                        <a href="#" id="submit-button" class="ghost-button inline-button">Submit</a>
+                        <a href="content_processing.html" id="submit-button" class="ghost-button inline-button">Submit</a>
                     </div>
 
                 </div>

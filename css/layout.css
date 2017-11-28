@@ -37,6 +37,25 @@ h6{
     text-align: center;
 }
 
+.section-content-small{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    bottom: 120px;
+    right: 0;
+    text-align: center;
+}
+
+.navigation-buttons{
+    position: absolute;
+    left:100px;
+    height: 70px;
+    right: 100px;
+    bottom: 50px;
+    text-align: center;
+    /* background-color: blue; */
+}
+
 .logo{
     height: 100%;
     text-align: center;
