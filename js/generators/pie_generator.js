@@ -76,7 +76,6 @@
     function renderPieChart(data,canvas,size){
         sectors = calculateSectors(data,size);
         var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
-        newSVG.setAttributeNS(null, 'style', "width: "+size+"px; height: " + size+ "px");
         canvas.appendChild(newSVG);
         sectors.map( function(sector) {
 
@@ -88,13 +87,6 @@
             newSVG.appendChild(newSector);
         })
 
-        var midCircle = document.createElementNS( "http://www.w3.org/2000/svg","circle" );
-        midCircle.setAttributeNS(null, 'cx', size * 0.5 );
-        midCircle.setAttributeNS(null, 'cy', size * 0.5);
-        midCircle.setAttributeNS(null, 'r', size * 0.28 );
-        midCircle.setAttributeNS(null, 'fill', '#42495B' );
-
-        newSVG.appendChild(midCircle);
         
         updatedData = {}
         for(var i = 0 ; i < sectors.length ; i++){

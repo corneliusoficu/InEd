@@ -46,3 +46,11 @@ h3{
 	height: 23px;
 	width: 38px;
 }
+
+@media screen and (max-width: 480px){
+    .content-edit{
+    	top:1000;
+        bottom: 0;
+        width: 100%;
+    }
+}

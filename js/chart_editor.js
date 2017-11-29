@@ -1,7 +1,8 @@
 var chartData = {
 	"Audi":{label:"Audi",color:undefined,count:30},
 	"BMW":{label:"BMW",color:"#4C991A",count:20},
-	"Honda":{label:"Honda",color:"#781A99",count:10}
+	"Honda":{label:"Honda",color:"#781A99",count:10},
+	"Mercedes":{label:"Honda",color:"#781A99",count:10}
 
 };
 
@@ -51,4 +52,14 @@ function updateChart(){
 var drawing_surface = document.getElementsByClassName('drawing-surface')[0];
 chartData =renderPieChart(chartData,drawing_surface,500);
 populateEditSurface(chartData);
+
+window.onresize = function(){
+	if(screen.width < 480){
+		document.getElementsByTagName('svg')[0].setAttribute('viewBox','0 0 600 600');
+		}
+	else{
+	document.getElementsByTagName('svg')[0].removeAttribute('viewBox');
+	}
+}
+
 		
