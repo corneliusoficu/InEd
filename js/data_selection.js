@@ -20,7 +20,7 @@ function setContent(button){
         var form = typesForms[radioButtons[i].id];
         
         if(form){
-            form.style.visibility='hidden' 
+            form.style.display = 'none';
         }
         
         
@@ -28,7 +28,7 @@ function setContent(button){
 
     var currentForm = typesForms[buttonId];
     if(currentForm){
-        currentForm.style.visibility='visible' 
+        currentForm.style.display = '';
     }
     
 

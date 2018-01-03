@@ -50,6 +50,8 @@ a.inline-button {
     display: block; 
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     text-align: right;
     width: 150px;
     padding: 8px;
@@ -60,7 +62,7 @@ a.inline-button {
     outline: none;
     text-decoration: none;
     transition: background-color 300ms, border-color 700ms;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     text-align: center;
     
 }
@@ -78,5 +80,31 @@ a.inline-button {
     border: 1px solid #f7B733;
 }
 
+@media only screen and (min-width: 25px){
+    .square{
+        width: 100px;
+        padding-bottom: 100px;
+    }
+
+    .section-content-small h2
+    {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 599px){
+
+    .square{
+        width: 250px;
+        padding-bottom: 250px;
+    }
+
+    .section-content-small h2
+    {
+        font-size: 50px;
+    }
+    
+    
+}
 
 

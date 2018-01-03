@@ -21,13 +21,13 @@ label{
     
 }
 
-.form-content{
-    position: absolute;
-    top: 50px;
-    left: 100px;
-    right: 100px;
-    bottom: 120px;
-    /* background: white; */
+.forms{
+    height: 300px;
+}
+
+.nav-buttons
+{
+    margin-top: 100px;
 }
 
 .form-buttons{

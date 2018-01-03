@@ -6,6 +6,11 @@ body{
     font-variant: normal;
     font-style: normal;
     font-weight: 100;
+    background-image: url("../img/blurred_graph.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 h6{
@@ -16,11 +21,6 @@ h6{
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url("../img/blurred_graph.jpg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: cover;
 }
 
 .section-top{
@@ -47,16 +47,6 @@ h6{
     bottom: 120px;
     right: 0;
     text-align: center;
-}
-
-.navigation-buttons{
-    position: absolute;
-    left:100px;
-    height: 70px;
-    right: 100px;
-    bottom: 50px;
-    text-align: center;
-    /* background-color: blue; */
 }
 
 .logo{
