@@ -4,6 +4,7 @@ var classIcon = "fa-5x";
 
 function categorySelection()
 {
+    console.log("ce pl mea mai vrei?");
     var square_button_categories = document.getElementsByClassName("square");
 
     for(var index = 0; index < square_button_categories.length; index++){
@@ -20,9 +21,19 @@ function selectSubCategory(e)
 
     switch(parent.id)
     {
-
+        case 'chart':
+            template.loadPartial('.section-top',"chart_editor_menu.html");
+            template.loadPartialWithScripts(
+                '.section-content',
+                "chart_editor_content.html",
+                ["js/generators/pie_generator.js","js/chart_editor.js","js/accordion_menu.js"]
+            );
+            break;
         case 'map':
-            window.location.href = "sub_category_selection.html";
+            template.loadPartialWithScripts(
+                '.section-content',
+                'sub_category_selection.htm',
+                ['js/sub_category_selection.js']);
             break;
         case 'map-continent':
             window.location.href = "input_selection.html?category=map&subcategory=continent";
@@ -74,9 +85,8 @@ function resize()
         }
     }
 }
-
-window.onload   = categorySelection;
 window.onresize = resize;
+categorySelection();
 
 
 

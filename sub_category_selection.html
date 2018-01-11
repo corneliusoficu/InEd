@@ -1,47 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="stylesheet" href="css/layout.css">
-        <link rel="stylesheet" href="css/category_selection.css">        
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans:lighter">
-        <title>Choose a subcategory</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="section-top">
-                <img class="logo" src='img/logo_ined.png'/>
+<div class="section-content-small">
+    <h2>Choose the type of map you want: </h2>
+
+    <div class="category" id="map-continent">
+        <div class="square">
+            <div class="content">
+                <img src="img/eu.png" style="width: 100%; height: 100%" alt="Europe"/>
             </div>
-            <div class="section-content-small">
-                <h2>Choose the type of map you want: </h2>
-
-                <div class="category" id="map-continent">
-                    <div class="square">
-                        <div class="content">
-                            <img src="img/eu.png" style="width: 100%; height: 100%" alt="Europe"/>
-                        </div>
-                    </div>
-                    <h6>Continent</h6>
-                </div>
-
-                <div class="category" id="map-country">
-                    <div class="square">
-                        <div class="content">
-                            <img src="img/us.png" style="width: 100%; height: 100%" alt="United States of America"/>
-                        </div>
-                    </div>
-                    <h6>Country</h6>
-                </div>
-
-                <a href="category_selection.html" class="ghost-button">Back</a>
-
-            </div>
-            
-                
-            
         </div>
-        <script src="js/category_selection.js"></script>
-    </body>
-</html>
+        <h6>Continent</h6>
+    </div>
+
+    <div class="category" id="map-country">
+        <div class="square">
+            <div class="content">
+                <img src="img/us.png" style="width: 100%; height: 100%" alt="United States of America"/>
+            </div>
+        </div>
+        <h6>Country</h6>
+    </div>
+
+    <a href="category_selection.html" class="ghost-button">Back</a>
+
+</div>
