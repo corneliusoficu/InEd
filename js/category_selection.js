@@ -30,9 +30,10 @@ function selectSubCategory(e)
             );
             break;
         case 'map':
+         console.log('esti cretin?');
             template.loadPartialWithScripts(
                 '.section-content',
-                'sub_category_selection.htm',
+                'sub_category_selection.html',
                 ['js/sub_category_selection.js']);
             break;
         case 'map-continent':
@@ -47,45 +48,6 @@ function selectSubCategory(e)
         
     }
 }
-
-function largestWidth()
-{
-    var mq = window.matchMedia("(min-width: 599px)");
-    return mq.matches;
-}
-
-function largeWidth()
-{
-    var mq = window.matchMedia("(max-width: 598px)");
-    return mq.matches;
-}
-
-function resize()
-{
-    if(largeWidth())
-    {
-        classIcon = "fa-2x";      
-    }
-    else if(largestWidth())
-    {
-        classIcon = "fa-5x";  
-    }
-
-    for(var index_el = 0; index_el < icons.length; index_el++)
-    {
-        var element = icons[index_el];
-        for(var index = 0; index < icon_sizes.length; index++)
-        {
-            var icon_size = icon_sizes[index];
-            if(element.classList.contains(icon_size) && icon_size != classIcon)
-            {
-                element.classList.remove(icon_size);
-                element.classList.add(classIcon);
-            }
-        }
-    }
-}
-window.onresize = resize;
 categorySelection();
 
 
