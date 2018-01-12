@@ -1,6 +1,11 @@
 
 window.onload = function(){
     document.querySelector('#goToCategorySelection').onclick = function(){
-        template.loadPartialWithScripts(".section-content","category_selection.html",["js/category_selection.js"]);
+        template.loadPartialWithAssets(
+        	"body",
+        	"category_selection.html",
+        	["css/category_selection.css"],
+        	["js/category_selection.js"]
+        	);
     }
 }

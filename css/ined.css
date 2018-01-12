@@ -1,38 +1,21 @@
+#start-page{
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-style: normal;
+    font-weight: 100;
+}
 #start-page a{
     font-size: 20px;
 }
-
-.ghost-button {
-    display: inline-block;
-    width: 150px;
-    padding: 8px;
-    color: rgb(0, 0, 0);
-    border-radius: 100px;
-    border: 1px solid rgb(0, 0, 0);
-    text-align: center;
-    outline: none;
-    text-decoration: none;
-    transition: background-color 300ms, border-color 700ms;
-    margin-top: 30px;
-    font-size: 20px;
-}
-
-.ghost-button:hover,
-.ghost-button:active {
-  background-color: #f7B733;
-  color: #000;
-  border: 1px solid #f7B733;
-}
-
-#start-page{
-    margin-top: 250px;
+#start-page .section-bottom-content{
+    margin-top: 300px
 }
 
 @media screen and (max-width: 480px){
     
-    #start-page .section-content h2{
+    #start-page .section-bottom-content{
         margin-top: 100px;
-        font-size:50px;
     }
     
 }

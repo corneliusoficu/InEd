@@ -1,4 +1,25 @@
 template = {}
+template.unloadStyles = function(stylesCollection){
+	var styles = document.getElementsByTagName('link');
+	Array.prototype.forEach.call(styles,function(element){
+		if(stylesCollection.indexOf(element.getAttribute("href")) != -1){
+			element.remove();
+		}	
+	});
+}
+
+template.loadStyles = function(stylesCollection){
+	Array.prototype.forEach.call(stylesCollection,function(element){
+		console.log(element);
+		var style = document.createElement('link');
+		style.setAttribute('type','text/css');
+		style.setAttribute('rel','stylesheet');
+		style.setAttribute('href',element);
+		document.getElementsByTagName("head")[0].appendChild(style);
+	});
+}
+
+
 template.loadScripts = function(scriptUrls){
 	template.loadJsFilesSequentially(scriptUrls,0);
 }
@@ -24,7 +45,6 @@ template.loadJsFilesSequentially = function(scriptsCollection, startIndex, libra
 
 template.loadPartial = function(containerSelector,partialUrl,callback){
 	var container = document.querySelector(containerSelector);
-	console.log(container);
 	container.innerHTML = "";
 	var xhr= new XMLHttpRequest();
 	xhr.open('GET', partialUrl, true);
@@ -38,13 +58,12 @@ template.loadPartial = function(containerSelector,partialUrl,callback){
 	xhr.send();
 }
 
-template.loadPartialWithScripts = function(containerSelector,partialUrl,scriptUrls){
+template.loadPartialWithAssets = function(containerSelector,partialUrl,styleUrls,scriptUrls){
 	template.loadPartial(
 						containerSelector,
 						partialUrl,
 						function(){
+							template.loadStyles(styleUrls);
 							template.loadScripts(scriptUrls);
 						});
 }
-
-

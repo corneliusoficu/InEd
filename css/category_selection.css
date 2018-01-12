@@ -1,15 +1,15 @@
-#category-selection-page{
+#category-selection-page .section-bottom-content{
     margin-top: 40px;
 }
 
-.category{
+#category-selection-page .category{
     display: inline-block;
     margin: 20px;
     position: relative;
     
 }
 
-.category .square{
+#category-selection-page .square{
     position: relative;
     width: 250px;
     padding-bottom: 250px;
@@ -21,13 +21,13 @@
     transition: border-color 300ms;
 }
 
-.category .square:hover,
+#category-selection-page .square:hover,
 .category .square:active {
   color: #000;
   border: 2px solid #f7B733;
 }
 
-.content{
+#category-selection-page .content{
     position: absolute;
     height: 80%;
     width: 90%;
@@ -72,7 +72,7 @@
     }
     #category-selection-page .categories{
             margin: 0px 5% 0px 5%;    }
-    #category-selection-page .square{
+    .square{
         width: 200px;
         padding-bottom: 185px;
     }

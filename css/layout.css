@@ -1,29 +1,36 @@
+html{
+    height: 100%;
+    width: 100%;
+}
 body{
-    margin: 0;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-size: 40px;
     font-variant: normal;
     font-style: normal;
     font-weight: 100;
+    height: 100%;
+    width: 100%;
+}
+h2{
+    font-size:60px;
+}
+h6{
+    font-size:25px;
+    margin:0;
+}
+
+.layout-background{
+    height: 100%;
+    width: 100%;
     background-image: url("../img/blurred_graph.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
 }
-
-h6{
-    margin: 0;
-}
-.fa-custom{
+.layout-background .fa-custom{
     font-size:5em;
-}
-
-.container{
-    position: relative;
-    width: 100%;
-    height: 100%;
 }
 
 .section-top{
@@ -34,7 +41,7 @@ h6{
 
 }
 
-.section-content{
+.section-bottom{
     position: absolute;
     top: 100px;
     left: 0;
@@ -43,16 +50,29 @@ h6{
     text-align: center;
 }
 
-.section-content-small{
-    position: absolute;
-    top: 100px;
-    left: 0;
-    bottom: 120px;
-    right: 0;
-    text-align: center;
-}
-
 .logo{
     height: 100%;
     text-align: center;
+}
+
+.ghost-button {
+    display: inline-block;
+    width: 150px;
+    padding: 8px;
+    color: rgb(0, 0, 0);
+    border-radius: 100px;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 700ms;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #f7B733;
+  color: #000;
+  border: 1px solid #f7B733;
 }
