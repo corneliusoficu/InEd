@@ -16,6 +16,9 @@ body{
 h6{
     margin: 0;
 }
+.fa-custom{
+    font-size:5em;
+}
 
 .container{
     position: relative;

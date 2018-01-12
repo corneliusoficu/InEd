@@ -34,9 +34,6 @@
     padding: 10% 5%;
     
 }
-.fa{
-    font-size:5em !important;
-}
 
 @media only screen and (max-width: 451px) , (max-height: 451px){
     #category-selection-page .square{
@@ -48,7 +45,7 @@
     {
         font-size: 30px;
     }
-    .fa{
+    .fa-custom{
         font-size:2em !important;
     }
 }
@@ -65,7 +62,7 @@
     {
         font-size: 30px;
     }
-    .fa{
+    .fa-custom{
         font-size:3em !important;
     }
 }
@@ -83,7 +80,7 @@
     {
         font-size: 40px;
     }
-    .fa{
+    .fa-custom{
         font-size:3em !important;
     }
 }
