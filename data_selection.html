@@ -1,65 +1,54 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="css/layout.css">
-        <link rel="stylesheet" href="css/category_selection.css">
-        <link rel="stylesheet" href="css/data_selection.css">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans:lighter">
-        <link rel="stylesheet" href="res/font-awesome/css/font-awesome.min.css">
-        <title>Input data</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="section-top">
-                <img class="logo" src='img/logo_ined.png'/>
+
+<div id = "data_selection_page" class="layout-background">
+    <div class="section-top">
+        <img class="logo" src='img/logo_ined.png'/>
+    </div>
+    <div class="section-bottom">
+        <div class = "section-bottom-data-selection">
+            <div class="data-type">
+                <h3>Select the data source</h3>
+                <a href="#" id='api' class="ghost-button nohover inline-button radio-button">API</a>
+                <a href="#" id='csv' class="ghost-button nohover inline-button radio-button">CSV/XLS</a>
+                <a href="#" id='json' class="ghost-button nohover inline-button radio-button">JSON</a>
             </div>
-            <div class="section-content">
 
-                <div class="data-type">
-                    <h3>Select the data source</h3>
-                    <a href="#" id='api' class="ghost-button nohover inline-button radio-button">API</a>
-                    <a href="#" id='csv' class="ghost-button nohover inline-button radio-button">CSV/XLS</a>
-                    <a href="#" id='json' class="ghost-button nohover inline-button radio-button">JSON</a>
-                </div>
-
-                <div class="data-content">
-                    
-                    <div class = "forms">
-                        <div class="form-content" id="api-form">
-                                <div class="form-group">
-                                    <label for="api">API URI Endpoint:</label>
-                                    <input type="text" class="required line-input" id='api' name="api" autofocus>
-                                </div>
-                        </div>
-
-                        <div class="form-content" id="csv-form">
-                            <div class="form-group">
-                                <input type="file" accept=".csv, .xls, .xlsx" class="required inputfile" name="file" id='file-upload-csv'>
-                                <label for="file-upload-csv" class="file-upload-label"><i class="fa fa-upload upload-icon" aria-hidden="true"></i>Choose a file</label>
-                            </div>
-                        </div>
-
-                        <div class="form-content" id="json-form">
-                                <div class="form-group">
-                                    <input type="file" accept=".json" class="required inputfile" name="file" id='file-upload-json'>
-                                    <label for="file-upload-json" class="file-upload-label"><i class="fa fa-upload upload-icon" aria-hidden="true"></i>Choose a file</label>
-                                </div>
-                        </div>
-
-                    </div>
-
-                    <div class="nav-buttons">
-                        <a href="category_selection.html" id="back-button" class="ghost-button inline-button">Back</a>
-                        <a href="content_processing.html" id="submit-button" class="ghost-button inline-button">Submit</a> 
-                    </div>
-
-                    
-                        
-                </div>
-
+            <div class="data-content">
                 
+                <div class = "forms">
+                    <div class="form-content" id="api-form">
+                            <div class="form-group">
+                                <label for="api">API URI Endpoint:</label>
+                                <input type="text" class="required line-input" id='api' name="api" autofocus>
+                            </div>
+                    </div>
 
+                    <div class="form-content" id="csv-form">
+                        <div class="form-group">
+                            <input type="file" accept=".csv, .xls, .xlsx" class="required inputfile" name="file" id='file-upload-csv'>
+                            <label for="file-upload-csv" class="file-upload-label"><i class="fa fa-upload upload-icon" aria-hidden="true"></i>Choose a file</label>
+                        </div>
+                    </div>
+
+                    <div class="form-content" id="json-form">
+                            <div class="form-group">
+                                <input type="file" accept=".json" class="required inputfile" name="file" id='file-upload-json'>
+                                <label for="file-upload-json" class="file-upload-label"><i class="fa fa-upload upload-icon" aria-hidden="true"></i>Choose a file</label>
+                            </div>
+                    </div>
+
+                </div>
+                <p id = "upload-error-message"></p>
+
+                <div class="nav-buttons">
+                    <a id="back-to-category-selection" class="ghost-button inline-button">Back</a>
+                    <a id="upload-data-button" class="ghost-button inline-button">Submit</a> 
+                </div>   
             </div>
         </div>
-        <script src="js/data_selection.js"></script>
-    </body>
-</html>
+        <div class="processing-status">
+                        <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                        <h6>Processing...</h6>
+        </div>
+    </div>
+</div>
