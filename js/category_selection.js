@@ -7,16 +7,30 @@ for(var index = 0; index < square_button_categories.length; index++){
 
         switch(parent.id){
             case 'chart':
-                template.loadPartial('.section-top',"chart_editor_menu.html");
                 template.loadPartialWithAssets(
                     'body',
-                    "chart_editor_content.html",
-                    ["css/layout_chart_editor.css"],
-                    ["js/generators/pie_generator.js","js/chart_editor.js","js/accordion_menu.js"]
+                    "data_selection.html",
+                    ["css/data_selection.css"],
+                    ["js/data_selection.js"]
                 );
-                template.unloadStyles(["css/layout.css"]);
+                //define a set of rules for checking data for every case and a special message
+                //for when data is not matched
+
+
+                //define function that renders the edit page for every case when the 
+                uploadSuccessfull = function(){
+                    template.saveState();
+                    template.loadPartialWithAssets(
+                                    'body',
+                                    "chart_editor.html",
+                                    ["css/layout_chart_editor.css"],
+                                    ["js/generators/pie_generator.js","js/chart_editor.js","js/accordion_menu.js"]
+                                );
+                    template.unloadStyles(["css/layout.css"]);
+                    }
                 break;
             case 'map':
+                template.saveState();
                 template.loadPartialWithAssets(
                     'body',
                     'sub_category_selection.html',
@@ -29,12 +43,16 @@ for(var index = 0; index < square_button_categories.length; index++){
                 window.location.href = "input_selection.html?category=map&subcategory=country";
                 break;
             default:
-                window.location.href = "data_selection.html";
+                template.loadPartialWithAssets(
+                    'body',
+                    "data_selection.html",
+                    ["css/data_selection.css"],
+                    ["js/data_selection.js"]
+                );
                 break;     
         }
     });
 }
-
 
 
     
