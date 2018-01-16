@@ -54,7 +54,6 @@ function calculateSectors(data,size) {
             X = l - x;
             arcSweep = 1;
         }
-        console.log(arcSweep);
         sectors.push({
             percentage: item.percentage,
             count : item.count,

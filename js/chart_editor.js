@@ -53,13 +53,4 @@ var drawing_surface = document.getElementsByClassName('drawing-surface')[0];
 chartData =renderPieChart(chartData,drawing_surface,500);
 populateEditSurface(chartData);
 
-window.onresize = function(){
-	if(screen.width < 480){
-		document.getElementsByTagName('svg')[0].setAttribute('viewBox','0 0 600 600');
-		}
-	else{
-	document.getElementsByTagName('svg')[0].removeAttribute('viewBox');
-	}
-}
-
 		

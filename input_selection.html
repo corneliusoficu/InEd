@@ -1,43 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<div id = "input-selection-page" class="layout-background">
+    <div class="section-top">
+        <img class="logo" src='img/logo_ined.png'/>
+    </div>
+    <div class="section-bottom">
+        <h2 id='input-message'></h2>
+        <div class="large-form-input">
 
-        <link rel="stylesheet" type="text/css" href="css/layout.css">
-        <link rel="stylesheet" type="text/css" href="css/category_selection.css">
-        <link rel="stylesheet" type="text/css" href="css/input_selection.css">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans:lighter">
-        <title>Search</title>
-    </head>
-    <body>
-        <div class="container">
+            <form id="search-form" autocomplete="off" action="#">
+                <input type="text" id='search' name="search" placeholder="Search" autofocus>
+            </form>
+        
             
-            <div class="section-top">
-                <img class="logo" src='img/logo_ined.png'/>
-            </div>
-
-            <div class="section-content-small">
-                <h2 id='input-message'></h2>
-                <div class="large-form-input">
-
-                    <form id="search-form" autocomplete="off" action="#">
-                        <input type="text" id='search' name="search" placeholder="Search" autofocus>
-                    </form>
-                
-                    
-                    <h6 class="validation-text" id="validation-text"></h3>
-                </div>
-                <a href="javascript:template.goBack()" class="ghost-button inline-button">Back</a>
-                <a href="data_selection.html" onclick="return validateFormInput();" class="ghost-button inline-button" id="continue-button">Continue</a>
-            </div>
-
-            
-                
-
+            <h6 class="validation-text" id="validation-text"></h3>
         </div>
-
-        <script src="js/input_validation.js"></script>
-        <script src="js/input_selection.js"></script>
-    </body>
-</html>
+        <a href="javascript:template.goBack()" class="ghost-button inline-button">Back</a>
+        <a href="data_selection.html" onclick="return validateFormInput();" class="ghost-button inline-button" id="continue-button">Continue</a>
+    </div>
+</div>
