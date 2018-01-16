@@ -30,6 +30,7 @@ for(var index = 0; index < square_button_categories.length; index++){
                     }
                 break;
             case 'map':
+                template.saveState();
                 template.loadPartialWithAssets(
                     'body',
                     'sub_category_selection.html',

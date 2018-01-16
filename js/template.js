@@ -1,5 +1,4 @@
 template = {}
-template.history = [];
 template.unloadStyles = function(stylesCollection){
 	var styles = document.getElementsByTagName('link');
 	Array.prototype.forEach.call(styles,function(element){
@@ -66,18 +65,4 @@ template.loadPartialWithAssets = function(containerSelector,partialUrl,styleUrls
 							template.loadStyles(styleUrls);
 							template.loadScripts(scriptUrls);
 						});
-}
-template.saveState = function(){
-	template.history.push(document.getElementsByTagName('html')[0].innerHTML);
-}
-template.goBack = function(){
-	var lastPage = template.history.pop();
-	document.getElementsByTagName('html')[0].innerHTML = lastPage;
-	var scriptNodeList = document.querySelectorAll('script');
-	var scriptsCollection = [];
-	for (var i = 0 ; i < scriptNodeList.length ; i++){
-		scriptsCollection.push(scriptNodeList[i].src);
-		scriptNodeList[i].remove();
-	}
-	template.loadScripts(scriptsCollection);
 }
