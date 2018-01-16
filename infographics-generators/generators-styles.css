@@ -1,0 +1,9 @@
+.parent{
+    position: relative;
+}
+
+.svg_area{
+    position:absolute;
+    top: 100px;
+    left: 50px;
+}
