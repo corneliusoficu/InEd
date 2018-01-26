@@ -17,4 +17,10 @@ input {
     text-align: center;
 }
 
+@media only screen and (max-width: 670px){
+    input{
+         font-size: 30px; 
+    }
+}
+
 

@@ -15,10 +15,22 @@ label{
 
 .data-content{
     position: absolute;
-    top: 240px;
+    top: 300px;
     bottom: 0;
     width: 100%;
     
+}
+
+@media only screen and (max-width: 346px){
+    .data-content{
+        top: 500px;
+    }
+}
+
+@media only screen and (min-width: 347px) and (max-width: 524px){
+    .data-content{
+        top: 400px;
+    }
 }
 
 .forms{

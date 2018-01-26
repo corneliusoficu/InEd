@@ -1,36 +1,30 @@
-const SELECT_CONTINENT_MESSAGE = 'Type the name of the continent:';
-const SELECT_CUNTRY_MESSAGE    = 'Type the name of the country:';
+const ERROR_NOT_FILLED = "You need to write something!";
 
-function findGetParameter(parameterName){
-    var result = null, tmp = [];
-    location.search
-        .substr(1)
-        .split("&")
-        .forEach(function (item) {
-          tmp = item.split("=");
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        });
-    return result;
+var input_box       = document.getElementById("search");
+var validation_text = document.getElementById("validation-text");
+
+function validateFormInput(){
+
+    if(input_box.value == ''){
+        validation_text.innerText = ERROR_NOT_FILLED;
+        validation_text.style.visibility = 'visible';
+        return false;
+    }else{
+        return true;
+    }
 }
 
-var inputMessage = document.getElementById('input-message');
+input_box.onkeydown = function(e){
+    if(e.keyCode == 13){
+        return validateFormInput();
+    }
+};
 
-var category    = findGetParameter(   'category');
-var subcategory = findGetParameter('subcategory');
-
-switch(category){
-    case 'map':
-    
-        if(subcategory == 'continent'){
-            inputMessage.innerHTML = SELECT_CONTINENT_MESSAGE;
-        }else if(subcategory == 'country'){
-            inputMessage.innerHTML = SELECT_CUNTRY_MESSAGE;
-        }else{
-            window.history.back();
-        }
-        break;
-
-    default:
-        window.history.back();
-
+function goToDataSelection(){
+    template.loadPartialWithAssets(
+        'body',
+        "data_selection.html",
+        ["css/data_selection.css"],
+        ["js/data_selection.js"]
+    );
 }
