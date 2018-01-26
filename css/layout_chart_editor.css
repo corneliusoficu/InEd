@@ -116,8 +116,6 @@ div.panel {
 }
 
 svg{
-    height: 500px;
-    width: 500px;
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);

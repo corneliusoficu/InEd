@@ -1,7 +1,17 @@
 function calculateSectors(data,size) {
     var sectors = [];
     var colors = [
-        "#61C0BF", "#DA507A", "#BB3D49", "#DB4547","#42b3f4","#f4f141","#f49d41"
+        "#050864",
+        "#61C0BF",
+        "#f49d41",
+        "#DA507A", 
+        "#BB3D49",
+        "#f4f141",
+        "#DB4547",
+        "#42b3f4",
+        "#8E7F7C",
+        "#5D63FF",
+        "#E5E4E2",
     ];
 
     var l = size / 2

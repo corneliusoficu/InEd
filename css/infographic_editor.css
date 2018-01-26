@@ -1,3 +1,12 @@
+/*
+#To To --Task (fixing infographic_editor layout )
+Here must go the css extracted from layout_chart_editor.css that has not been already been
+merged into layout.css
+*/
+
+
+/*
+
 p{
 	margin:0;
 	font-size:14px;
@@ -48,9 +57,5 @@ h3{
 }
 
 @media screen and (max-width: 480px){
-    .content-edit{
-    	top:1000;
-        bottom: 0;
-        width: 100%;
-    }
 }
+*/

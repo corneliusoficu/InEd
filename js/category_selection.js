@@ -34,17 +34,8 @@ for(var index = 0; index < square_button_categories.length; index++){
                     ["css/data_selection.css"],
                     ["js/data_selection.js"]
                 );
-                //define a set of rules for checking data for every case and a special message
-                //for when data is not matched
-
-
-                //define function that renders the edit page for every case when the 
-                uploadSuccessfull = function(){
-                        //template.saveState();
-                    }
                 break;
             case 'map':
-
                 template.loadPartialWithAssets(
                     'body',
                     'sub_category_selection.html',
@@ -73,6 +64,8 @@ for(var index = 0; index < square_button_categories.length; index++){
         }
     });
 }
+
+
 
 
     

@@ -8,6 +8,15 @@ var typesForms = {
     csv: null,
     json: null
 };
+function uploadSuccessfull(){
+    template.loadPartialWithAssets(
+            'body',
+            "infographic_editor.html",
+            ["css/layout_chart_editor.css"],
+            ["js/infographic_editor.js","js/accordion_menu.js"]
+        );
+        template.unloadStyles(["css/layout.css"]);  
+}
 
 function setContent(button_item){
 
@@ -63,8 +72,8 @@ function loadFileFromLink(apiUrl){
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return;
-        uploadedData.data.type = this.responseType;
         uploadedData.data.text = this.responseText;
+        uploadedData.extension = apiUrl.split('.').pop().toLowerCase();
     };
     xhr.send();
 }
@@ -86,38 +95,51 @@ function displayUploadError(errorMessage){
 
 function getFileFromForm(form){
     uploadedData.data = {};
-    console.log(form);
+    var fileExtension = null;
     var input = form.getElementsByClassName('form-group')[0].getElementsByTagName('input')[0];
     if(input.getAttribute('type') == 'text'){
-        if(input.value)
+        if(input.value){
+            var allowedextentions = ["csv",'xlsx','xls','json'];
+            fileExtension = input.value.split('.').pop().toLowerCase();
+            if (allowedextentions.includes(fileExtension) == false)
+                throw "File extension must be " + allowedextentions.join('/') + ' !';;
             loadFileFromLink(input.value)
+        }
         else throw "Api link not completed"
     }
     else if(input.getAttribute('type') == 'file'){
         var files = input.files;
-        console.log(files); 
-        console.log(files[0]);
         if(files.length == 0)
             throw "File not uploaded";
+        else {
+            var excelExtentions = ["csv",'xlsx','xls'];
+            fileExtension = files[0].name.split('.').pop().toLowerCase();
+            if (form.id == "csv-form" && excelExtentions.includes(fileExtension) == false)
+                throw "File extension must be " + excelExtentions.join('/') + ' !';
+            if(form.id == "json-form" && fileExtension != "json")
+                throw "File extension must be json";
+
+        }
         fr = new FileReader();
-        uploadedData.data.text = fr.readAsText(files[0]);
-        console.log(uploadedData.data.text);
+        fr.onloadend = function() {
+            uploadedData.data = fr.result;
+            uploadedData.extension = fileExtension;
+        };
+        fr.readAsText(files[0]);
     }
-    displayProcessingStatus();
-    
-    if(Object.keys(uploadedData.data).length === 0){
-        displayUploadError("Upload failed!");
-    }
-    else{
-        template.loadPartialWithAssets(
-            'body',
-            "chart_editor.html",
-            ["css/layout_chart_editor.css"],
-            ["js/generators/pie_generator.js","js/chart_editor.js","js/accordion_menu.js"]
-        );
-        template.unloadStyles(["css/layout.css"]);  
-    }
-       
+    //file is uploaded now
+
+
+    //displayProcessingStatus();
+    setTimeout(function(){
+        if(Object.keys(uploadedData.data).length === 0){
+            displayUploadError("Upload failed!");
+        }
+        else{
+            //convertDataToJson();
+            uploadSuccessfull();
+        }
+    },300);
 
 }
 
