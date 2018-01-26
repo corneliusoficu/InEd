@@ -30,11 +30,12 @@ for(var index = 0; index < square_button_categories.length; index++){
                     }
                 break;
             case 'map':
-                template.saveState();
+                //template.saveState();
                 template.loadPartialWithAssets(
                     'body',
                     'sub_category_selection.html',
-                    ['js/sub_category_selection.js']);
+                    ["css/sub_category_selection.css"],
+                    ['js/category_selection.js']);
                 break;
             case 'map-continent':
                 window.location.href = "input_selection.html?category=map&subcategory=continent";

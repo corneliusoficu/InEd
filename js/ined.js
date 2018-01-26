@@ -6,6 +6,6 @@ window.onload = function(){
         	"category_selection.html",
         	["css/category_selection.css"],
         	["js/category_selection.js"]
-        	);
+        );
     }
 }

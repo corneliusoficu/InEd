@@ -69,6 +69,7 @@ h6{
     transition: background-color 300ms, border-color 700ms;
     margin-top: 30px;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .ghost-button:hover,

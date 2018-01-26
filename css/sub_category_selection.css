@@ -1,0 +1,101 @@
+#sub-category-selection-page .section-bottom-content{
+    margin-top: 40px;
+}
+
+#sub-category-selection-page .category{
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+    
+}
+
+#sub-category-selection-page .square{
+    position: relative;
+    width: 250px;
+    padding-bottom: 250px;
+    margin: 1.66%;
+    overflow: hidden;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 300ms;
+    cursor: pointer;
+}
+
+#sub-category-selection-page .square:hover,
+.category .square:active {
+  color: #000;
+  border: 2px solid #f7B733;
+}
+
+#sub-category-selection-page .content{
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    padding: 10% 5%;
+    
+}
+
+@media only screen and (max-width: 451px) , (max-height: 451px){
+    #sub-category-selection-page .square{
+        width: 100px;
+        padding-bottom: 100px;
+    }
+
+    #sub-category-selection-page h2
+    {
+        font-size: 30px;
+    }
+    .fa-custom{
+        font-size:2em !important;
+    }
+}
+@media only screen and (min-width : 452px) and (max-width: 825px){
+    #sub-category-selection-page{
+        margin-top: 10px;
+    }
+
+    #sub-category-selection-page .square{
+        width: 150px;
+        padding-bottom: 140px;
+    }
+    #sub-category-selection-page h2
+    {
+        font-size: 30px;
+    }
+    .fa-custom{
+        font-size:3em !important;
+    }
+}
+@media only screen and (min-width : 825px) and (max-width: 1000px){
+    #sub-category-selection-page{
+        margin-top: 20px;
+    }
+    #sub-category-selection-page .categories{
+            margin: 0px 5% 0px 5%;    }
+    .square{
+        width: 200px;
+        padding-bottom: 185px;
+    }
+    #sub-category-selection-page h2
+    {
+        font-size: 40px;
+    }
+}
+
+/*@media only screen and (min-width: 599px){
+
+    #sub-category-selection-page .square{
+        width: 250px;
+        padding-bottom: 250px;
+    }
+
+    #sub-category-selection-page .section-content h2
+    {
+        font-size: 50px;
+    }
+    
+    
+}
+*/
+

@@ -32,7 +32,7 @@
     height: 80%;
     width: 90%;
     padding: 10% 5%;
-    
+    cursor:pointer;
 }
 
 @media only screen and (max-width: 451px) , (max-height: 451px){

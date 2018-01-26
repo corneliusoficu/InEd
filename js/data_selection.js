@@ -30,8 +30,6 @@ function setContent(button){
         if(form){
             form.style.display = 'none';
         }
-        
-        
     }
 
     var currentForm = typesForms[buttonId];
