@@ -8,8 +8,6 @@ addEventListener('popstate', function (event) {
 			event.state.styles, 
 			event.state.scripts, 
 			false);
-	}else{
-		alert("NU!!");
 	}	
 });
 
@@ -104,11 +102,20 @@ template.loadPartialWithAssets = function(containerSelector, partialUrl, styleUr
 						});
 }
 
+template.goBack = function(){
+	window.history.back();
+}
+
 window.onload = function(){
         template.loadPartialWithAssets(
         	"body",
         	"welcome.html",
         	[],
-        	["js/ined.js"]
+        	["js/welcome.js"]
         );
 }
+
+
+
+
+

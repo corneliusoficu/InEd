@@ -8,14 +8,6 @@ var typesForms = {
     csv: null,
     json: null
 };
-document.getElementById("back-to-category-selection").onclick = function(){
-       template.loadPartialWithAssets(
-            "body",
-            "category_selection.html",
-            ["css/category_selection.css"],
-            ["js/category_selection.js"]
-            );
-}
 
 function setContent(button_item){
 
