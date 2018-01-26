@@ -17,16 +17,16 @@ document.getElementById("back-to-category-selection").onclick = function(){
             );
 }
 
-function setContent(button){
+function setContent(button_item){
 
-    var buttonType = button.innerHTML;
-    var buttonId = button.id;
+    var buttonType = button_item.innerHTML;
+    var buttonId =   button_item.id;
 
     for (var i = 0, len = radioButtons.length; i < len; i++){
 
         radioButtons[i].classList.remove('ghost-button-selected');
         var form = typesForms[radioButtons[i].id];
-        
+
         if(form){
             form.style.display = 'none';
         }
@@ -37,13 +37,14 @@ function setContent(button){
         currentForm.style.display = '';
     }
     
-
-    button.classList.add('ghost-button-selected');
+    button_item.classList.add('ghost-button-selected');
 }
 
 function changeRadioButtonsState(element){
 
-    var currentButton = element.srcElement;
+    console.log(element);
+
+    var currentButton = element.target;
 
     setContent(currentButton);
     
@@ -125,6 +126,7 @@ for (var type in typesForms){
 for (var i = 0, len = radioButtons.length; i < len; i++) {
     radioButtons[i].addEventListener('click',changeRadioButtonsState)
 }
+
 
 setContent(radioButtons[0]);
 

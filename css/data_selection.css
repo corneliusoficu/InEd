@@ -92,10 +92,17 @@ label{
     position: absolute;
     top: 50%;
 }
+
 #upload-error-message{
     display: none;
     font-size: 30px;
     color: red;
     font-weight: bold;
     margin: 0;
+}
+
+.ghost-button-selected{
+    background-color: #f7B733;
+    color: #000;
+    border: 1px solid #f7B733;
 }
