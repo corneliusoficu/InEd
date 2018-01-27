@@ -18,6 +18,63 @@ function uploadSuccessfull(){
         template.unloadStyles(["css/layout.css"]);  
 }
 
+function csvTojs(csv) {
+    var chartColumns = ["Tag","Count","color"];
+    var mapColumns = ["Tag","Count"];
+    var headers = null;
+    if(metadata_info.category == "chart"){
+        headers = chartColumns;
+    }
+    if(metadata_info.category == "map"){
+        headers = mapColumns;
+    }
+
+
+    var lines=csv.split("\n");
+    var result = [];
+    for(var i=1; i<lines.length; i++) {
+    var obj = {};
+
+    var row = lines[i],
+      queryIdx = 0,
+      startValueIdx = 0,
+      idx = 0;
+
+    if (row.trim() === '') { continue; }
+
+    while (idx < row.length) {
+      /* if we meet a double quote we skip until the next one */
+      var c = row[idx];
+
+      if (c === '"') {
+        do { c = row[++idx]; } while (c !== '"' && idx < row.length - 1);
+      }
+
+      if (c === ',' || /* handle end of line with no comma */ idx === row.length - 1) {
+        /* we've got a value */
+        var value = row.substr(startValueIdx, idx - startValueIdx).trim();
+
+        /* skip first double quote */
+        if (value[0] === '"') { value = value.substr(1); }
+        /* skip last comma */
+        if (value[value.length - 1] === ',') { value = value.substr(0, value.length - 1); }
+        /* skip last double quote */
+        if (value[value.length - 1] === '"') { value = value.substr(0, value.length - 1); }
+
+        var key = headers[queryIdx++];
+        obj[key] = value;
+        startValueIdx = idx + 1;
+      }
+
+      ++idx;
+    }
+
+    result.push(obj);
+    }
+    return JSON.stringify(result);
+}
+
+
 function setContent(button_item){
 
     var buttonType = button_item.innerHTML;
@@ -72,7 +129,7 @@ function loadFileFromLink(apiUrl){
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return;
-        uploadedData.data.text = this.responseText;
+        uploadedData.text = this.responseText;
         uploadedData.extension = apiUrl.split('.').pop().toLowerCase();
     };
     xhr.send();
@@ -94,7 +151,7 @@ function displayUploadError(errorMessage){
 }
 
 function getFileFromForm(form){
-    uploadedData.data = {};
+    uploadedData = {};
     var fileExtension = null;
     var input = form.getElementsByClassName('form-group')[0].getElementsByTagName('input')[0];
     if(input.getAttribute('type') == 'text'){
@@ -122,7 +179,7 @@ function getFileFromForm(form){
         }
         fr = new FileReader();
         fr.onloadend = function() {
-            uploadedData.data = fr.result;
+            uploadedData.text = fr.result;
             uploadedData.extension = fileExtension;
         };
         fr.readAsText(files[0]);
@@ -130,13 +187,16 @@ function getFileFromForm(form){
     //file is uploaded now
 
 
-    //displayProcessingStatus();
+    displayProcessingStatus();
     setTimeout(function(){
-        if(Object.keys(uploadedData.data).length === 0){
+        if(Object.keys(uploadedData.text).length === 0){
             displayUploadError("Upload failed!");
         }
         else{
-            //convertDataToJson();
+            if(uploadedData.extension == "csv"){
+                uploadedData.text = csvTojs(uploadedData.text);
+            }
+            uploadedData.data = JSON.parse(uploadedData.text);
             uploadSuccessfull();
         }
     },300);
