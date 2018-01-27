@@ -63,8 +63,8 @@ function loadFileFromLink(apiUrl){
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return;
-        inedGlobalVars.data.type = this.responseType;
-        inedGlobalVars.data.text = this.responseText;
+        uploadedData.data.type = this.responseType;
+        uploadedData.data.text = this.responseText;
     };
     xhr.send();
 }
@@ -83,8 +83,10 @@ function displayUploadError(errorMessage){
     error.innerHTML = errorMessage;
     error.style.display = 'block';
 }
+
 function getFileFromForm(form){
-    inedGlobalVars.data = {};
+    uploadedData.data = {};
+    console.log(form);
     var input = form.getElementsByClassName('form-group')[0].getElementsByTagName('input')[0];
     if(input.getAttribute('type') == 'text'){
         if(input.value)
@@ -93,21 +95,29 @@ function getFileFromForm(form){
     }
     else if(input.getAttribute('type') == 'file'){
         var files = input.files;
+        console.log(files); 
         console.log(files[0]);
         if(files.length == 0)
             throw "File not uploaded";
         fr = new FileReader();
-        inedGlobalVars.data.text = fr.readAsText(files[0]);
+        uploadedData.data.text = fr.readAsText(files[0]);
+        console.log(uploadedData.data.text);
     }
     displayProcessingStatus();
-    setTimeout(function(){
-            if(Object.keys(inedGlobalVars.data).length === 0){
-                displayUploadError("Upload failed!");
-            }
-            else{
-                uploadSuccessfull();
-            }
-        },3000);
+    
+    if(Object.keys(uploadedData.data).length === 0){
+        displayUploadError("Upload failed!");
+    }
+    else{
+        template.loadPartialWithAssets(
+            'body',
+            "chart_editor.html",
+            ["css/layout_chart_editor.css"],
+            ["js/generators/pie_generator.js","js/chart_editor.js","js/accordion_menu.js"]
+        );
+        template.unloadStyles(["css/layout.css"]);  
+    }
+       
 
 }
 

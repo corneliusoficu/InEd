@@ -1,4 +1,4 @@
-const ERROR_NOT_FILLED = "You need to write something!";
+var ERROR_NOT_FILLED = "You need to write something!";
 
 var input_box       = document.getElementById("search");
 var validation_text = document.getElementById("validation-text");
@@ -10,6 +10,7 @@ function validateFormInput(){
         validation_text.style.visibility = 'visible';
         return false;
     }else{
+        metadata.set("type", input_box.value);
         return true;
     }
 }

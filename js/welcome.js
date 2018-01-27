@@ -1,4 +1,3 @@
-inedGlobalVars = {}
 document.querySelector('#goToCategorySelection').onclick = function(){
     template.loadPartialWithAssets(
         "body",

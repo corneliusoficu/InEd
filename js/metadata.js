@@ -1,4 +1,0 @@
-var metadata = {
-    category:    "",
-    subcategory: ""
-};
