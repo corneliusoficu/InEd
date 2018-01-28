@@ -1,4 +1,4 @@
-const SVG_LOCATION = "res/svg";
+var SVG_LOCATION = "res/svg";
 
 var percentColors = [
     { pct: 0.0, color: { r: 0x00, g: 0x64, b: 0 } },
@@ -60,7 +60,7 @@ function validate(data)
     return 1;
 }
 
-const sumReducer = (accumulator, currentValue) => accumulator + currentValue;
+var sumReducer = (accumulator, currentValue) => accumulator + currentValue;
 
 function calculateProportions(numbersArray)
 {

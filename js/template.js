@@ -1,5 +1,8 @@
 template = {}
 
+currentPageScripts = [];
+currentPageStyles  = [];
+
 addEventListener('popstate', function (event) {
 	if(event.state){
 		template.loadPartialWithAssets(
@@ -40,18 +43,28 @@ template.unloadStyles = function(stylesCollection){
 }
 
 template.loadStyles = function(stylesCollection){
+	template.removeContentFromPage(currentPageStyles);
 	Array.prototype.forEach.call(stylesCollection,function(element){
 		var style = document.createElement('link');
 		style.setAttribute('type','text/css');
 		style.setAttribute('rel','stylesheet');
 		style.setAttribute('href',element);
+		currentPageStyles.push(style);
 		document.getElementsByTagName("head")[0].appendChild(style);
 	});
 }
 
 
 template.loadScripts = function(scriptUrls){
+	template.removeContentFromPage(currentPageScripts);
 	template.loadJsFilesSequentially(scriptUrls,0);
+}
+
+template.removeContentFromPage = function(contentArray){
+	Array.prototype.forEach.call(contentArray, function(element){
+		element.remove();
+	});
+	contentArray = [];
 }
 
 template.loadJsFilesSequentially = function(scriptsCollection, startIndex, librariesLoadedCallback) {
@@ -64,7 +77,8 @@ template.loadJsFilesSequentially = function(scriptsCollection, startIndex, libra
          template.loadJsFilesSequentially(scriptsCollection, startIndex, librariesLoadedCallback)
        };
  
-       document.getElementsByTagName("head")[0].appendChild(fileref)
+	   currentPageScripts.push(fileref);
+	   document.getElementsByTagName("head")[0].appendChild(fileref)
      }
      else {
        if (librariesLoadedCallback != undefined)

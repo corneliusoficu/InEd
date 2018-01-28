@@ -1,5 +1,5 @@
-const SCRIPT_NAME_ENDING = "_generator.js";
-const SCRIPT_FILE_PATH   = "js/generators/";
+var SCRIPT_NAME_ENDING = "_generator.js";
+var SCRIPT_FILE_PATH   = "js/generators/";
 
 function loadInfographicGeneratorScript(){
     if(metadata_info.category == undefined){
