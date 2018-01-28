@@ -12,10 +12,9 @@ function uploadSuccessfull(){
     template.loadPartialWithAssets(
             'body',
             "infographic_editor.html",
-            ["css/layout_chart_editor.css"],
+            ["css/infographic_editor.css"],
             ["js/infographic_editor.js","js/accordion_menu.js"]
         );
-        template.unloadStyles(["css/layout.css"]);  
 }
 
 function csvTojs(csv) {

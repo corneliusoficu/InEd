@@ -125,11 +125,11 @@ function generateMap(mapData)
     }
 }
 
-function generate(information){
+function generate(information,container){
     var country = information.metadata.type.toLowerCase();
     var svgLink = SVG_LOCATION + '/' + country + '.svg'; 
     
-    getRemoteResource('.drawing-surface', svgLink);
+    getRemoteResource('.drawing-surface-content', svgLink);
     generateMap(information.data);
 }
 

@@ -9,5 +9,8 @@ function loadInfographicGeneratorScript(){
         template.loadScripts([scriptName]);
     }
 }
+document.getElementById('export-draw').onclick = function (){
+
+}
 
 loadInfographicGeneratorScript();
