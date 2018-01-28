@@ -1,0 +1,9 @@
+.nav-buttons{
+    margin-top: 50px;
+}
+
+.ghost-button-selected{
+    background-color: #f7B733;
+    color: #000;
+    border: 1px solid #f7B733;
+}

@@ -22,6 +22,15 @@ input_box.onkeydown = function(e){
     }
 };
 
+function goToDataTypeSelection(){
+    template.loadPartialWithAssets(
+        'body',
+        'data_type_selection.html',
+        ['css/data_type_selection.css'],
+        ['js/data_type_selection.js']
+    );
+}
+
 function goToDataSelection(){
     template.loadPartialWithAssets(
         'body',

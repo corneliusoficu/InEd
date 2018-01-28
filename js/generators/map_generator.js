@@ -20,16 +20,10 @@ function getRemoteResource(containerSelector, partialUrl, callback){
     }
 }
     
-function applyStatisticalDataTransformation(values, transformationType)
+function applyStatisticalDataTransformation(values)
 {
     var transformedValues = values.map(function(value){
-        switch(transformationType)
-        {
-            case "population":
-                return (Math.asin(Math.sqrt(value)));
-            default:
-                return value;
-        }
+       return (Math.asin(Math.sqrt(value)));
     });
 
     return transformedValues;
@@ -77,28 +71,28 @@ function calculateProportions(numbersArray)
     return proportions;
 }
 
-function generateMap(mapData)
+function generateMap(information)
 {
-    if(!validate(mapData))
+    if(!validate(information.data))
     {
         return 0;
     }
 
+    mapData = information.data;
+
     var proportions = [];
     var numbers = Object.values(mapData.regions);
+    proportions = calculateProportions(numbers);
 
-    if(mapData.number_type == "numerical")
-    {
-        proportions = calculateProportions(numbers);
-        if("measurement" in mapData)
-        {
-            proportions = applyStatisticalDataTransformation(proportions, mapData.measurement);
+    console.log(information.metadata);
+    if("configuration" in information.metadata){
+        switch(information.metadata.configuration){
+            case "Population":
+                proportions = applyStatisticalDataTransformation(proportions);
+                break;
         }
     }
-    else if(mapData.number_type == "percentage")
-    {
-        proportions = numbers;
-    }
+
 
     var arrayColors = proportions.map(x => getColorForPercentage(x));
 
@@ -120,7 +114,7 @@ function generate(information, container){
     var svgLink = SVG_LOCATION + '/' + country + '.svg'; 
     
     getRemoteResource(container, svgLink);
-    generateMap(information.data);
+    generateMap(information);
     addTooltipEvents(information.data);
 }
 
