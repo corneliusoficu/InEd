@@ -6,7 +6,6 @@ var percentColors = [
     { pct: 1.0, color: { r: 0xff, g: 0x00, b: 0 } }
 ];
 
-//TODO: Error handling for resource not found
 function getRemoteResource(containerSelector, partialUrl, callback){
 	var container = document.querySelector(containerSelector);
 	container.innerHTML = "";
@@ -122,6 +121,7 @@ function generate(information, container){
     
     getRemoteResource(container, svgLink);
     generateMap(information.data);
+    addTooltipEvents(information.data);
 }
 
 var map_data = {
@@ -152,9 +152,39 @@ var map_data = {
             "Bremen":                   661000
         }
     }
-    
 }
 
+var tooltip;
+var information;
+
+function addTooltipEvents(dataInformation){
+    information = dataInformation;
+    tooltip = document.getElementById('tooltip');
+    var countries = document.getElementsByTagName("path");
+
+    for(index = 0, pathLen = countries.length; index < pathLen; index++){
+        countries[index].addEventListener("mousemove", mouseOverCountry);
+        countries[index].addEventListener("mouseout", mouseOutCountry);
+    }
+}
+
+function mouseOutCountry(evt){
+    tooltip.setAttribute("visibility", "hidden");
+}
+
+function mouseOverCountry(evt){
+    tooltip.setAttribute("x", evt.clientX - 30);
+    tooltip.setAttribute("y", evt.clientY - 60);
+    title = evt.target.getAttribute('title');
+    tooltip.innerHTML = title;
+    if(title in information.regions){
+        tooltip.innerHTML +=": " + information.regions[title];
+    }else{
+        tooltip.innerHTML +=": unknown";
+    }
+
+    tooltip.setAttribute("visibility", "visible");
+}
 
 
 
