@@ -13,10 +13,12 @@ function getRemoteResource(containerSelector, partialUrl, callback){
     var xhr= new XMLHttpRequest();
     xhr.open('GET', partialUrl, false);
     xhr.send(null);
+
     if(xhr.status == 200){
         container.innerHTML += xhr.responseText;
+    }else{
+        alert("We couldn't find any resource for the data you specified!");
     }
-	
 }
     
 function applyStatisticalDataTransformation(values, transformationType)
@@ -65,7 +67,6 @@ var sumReducer = (accumulator, currentValue) => accumulator + currentValue;
 function calculateProportions(numbersArray)
 {
     var sumTotal = numbersArray.reduce(sumReducer);
-    console.log(sumTotal);
     var arrayLen = numbersArray.length;
 
     var proportions = [];
@@ -87,10 +88,6 @@ function generateMap(mapData)
     var proportions = [];
     var numbers = Object.values(mapData.regions);
 
-    console.log(numbers);
-
-    console.log(numbers);
-
     if(mapData.number_type == "numerical")
     {
         proportions = calculateProportions(numbers);
@@ -104,15 +101,9 @@ function generateMap(mapData)
         proportions = numbers;
     }
 
-    console.log(proportions);
-
     var arrayColors = proportions.map(x => getColorForPercentage(x));
 
     var regions = Object.keys(mapData.regions);
-
-    console.log(regions);
-
-    console.log(document.getElementsByTagName("body"));
 
     for(index = 0, lengthRegions = regions.length; index < lengthRegions; index++)
     {
@@ -125,11 +116,11 @@ function generateMap(mapData)
     }
 }
 
-function generate(information,container){
+function generate(information, container){
     var country = information.metadata.type.toLowerCase();
     var svgLink = SVG_LOCATION + '/' + country + '.svg'; 
     
-    getRemoteResource('.drawing-surface-content', svgLink);
+    getRemoteResource(container, svgLink);
     generateMap(information.data);
 }
 
@@ -164,7 +155,6 @@ var map_data = {
     
 }
 
-generate(map_data);
 
 
 

@@ -1,7 +1,7 @@
-var metadata_info = {};
-var metadata      = {};
+var metadata_info       = {};
+var metadata            = {};
 
-var uploadedData  = {};
+var completeInformation = {};
 
 metadata.clearMetadata = function(){
     metadata_info = {};

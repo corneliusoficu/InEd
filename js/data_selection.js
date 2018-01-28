@@ -8,7 +8,11 @@ var typesForms = {
     csv: null,
     json: null
 };
-function uploadSuccessfull(){
+function uploadSuccessfull(uploadedData){
+
+    completeInformation["metadata"] = metadata_info;
+    completeInformation["data"]     = uploadedData; 
+
     template.loadPartialWithAssets(
             'body',
             "infographic_editor.html",
@@ -99,8 +103,6 @@ function setContent(button_item){
 
 function changeRadioButtonsState(element){
 
-    console.log(element);
-
     var currentButton = element.target;
 
     setContent(currentButton);
@@ -128,8 +130,8 @@ function loadFileFromLink(apiUrl){
     xhr.onreadystatechange= function() {
         if (this.readyState!==4) return;
         if (this.status!==200) return;
-        uploadedData.text = this.responseText;
-        uploadedData.extension = apiUrl.split('.').pop().toLowerCase();
+        metadata_info.text = this.responseText;
+        metadata_info.extension = apiUrl.split('.').pop().toLowerCase();
     };
     xhr.send();
 }
@@ -150,7 +152,7 @@ function displayUploadError(errorMessage){
 }
 
 function getFileFromForm(form){
-    uploadedData = {};
+
     var fileExtension = null;
     var input = form.getElementsByClassName('form-group')[0].getElementsByTagName('input')[0];
     if(input.getAttribute('type') == 'text'){
@@ -178,8 +180,8 @@ function getFileFromForm(form){
         }
         fr = new FileReader();
         fr.onloadend = function() {
-            uploadedData.text = fr.result;
-            uploadedData.extension = fileExtension;
+            metadata_info.text = fr.result;
+            metadata_info.extension = fileExtension;
         };
         fr.readAsText(files[0]);
     }
@@ -188,15 +190,15 @@ function getFileFromForm(form){
 
     displayProcessingStatus();
     setTimeout(function(){
-        if(Object.keys(uploadedData.text).length === 0){
+        if(Object.keys(metadata_info.text).length === 0){
             displayUploadError("Upload failed!");
         }
         else{
-            if(uploadedData.extension == "csv"){
-                uploadedData.text = csvTojs(uploadedData.text);
+            if(metadata_info.extension == "csv"){
+                metadata_info.text = csvTojs(metadata_info.text);
             }
-            uploadedData.data = JSON.parse(uploadedData.text);
-            uploadSuccessfull();
+            uploadedData = JSON.parse(metadata_info.text);
+            uploadSuccessfull(uploadedData);
         }
     },300);
 
@@ -216,6 +218,7 @@ setContent(radioButtons[0]);
 for(var i = 0, len = browseButtons.length; i < len; i++){
     browseButtons[i].addEventListener('change', setFileName);
 }
+
 document.getElementById('upload-data-button').onclick = function (){
     var forms = document.getElementsByClassName('form-content');
     Array.prototype.forEach.call(forms,function(form){
