@@ -17,7 +17,7 @@ h2{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #8cc7fc;
+    background-color: #fbc035;
     height: 100%;
 }
 
@@ -58,7 +58,7 @@ h2{
     top: 0px;
     left: 10px;
     bottom: 10px;
-    right: 420px;
+    right: 10px;
 }
     #infographic-editor .drawing-surface-fade{ 
         width: 100%;
