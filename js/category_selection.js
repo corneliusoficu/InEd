@@ -1,6 +1,5 @@
 var square_button_categories = document.getElementsByClassName("square");
 
-
 function setMetadataInformation(item){
     
     if(item.classList.contains('subcategory'))
@@ -27,7 +26,6 @@ for(var index = 0; index < square_button_categories.length; index++){
 
         switch(parent.id){
             case 'chart':
- 
                 template.loadPartialWithAssets(
                     'body',
                     "data_selection.html",
@@ -36,24 +34,15 @@ for(var index = 0; index < square_button_categories.length; index++){
                 );
                 break;
             case 'map':
-                template.loadPartialWithAssets(
-                    'body',
-                    'sub_category_selection.html',
-                    ["css/sub_category_selection.css"],
-                    ['js/category_selection.js']);
-                break;
-            case 'map-continent':   
-            case 'map-country':
-
+                template.templateData["input_message"] = "Type in the region you want:";
                 template.loadPartialWithAssets(
                     'body',
                     'input_selection.html',
                     ['css/input_selection.css'],
                     ['js/input_selection.js']
                 );
-                break;
+                break; 
             default:
-
                 template.loadPartialWithAssets(
                     'body',
                     "data_selection.html",

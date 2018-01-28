@@ -3,6 +3,8 @@ template = {}
 currentPageScripts = [];
 currentPageStyles  = [];
 
+template.templateData = {};
+
 addEventListener('popstate', function (event) {
 	if(event.state){
 		template.loadPartialWithAssets(

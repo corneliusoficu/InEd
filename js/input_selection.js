@@ -2,6 +2,7 @@ var ERROR_NOT_FILLED = "You need to write something!";
 
 var input_box       = document.getElementById("search");
 var validation_text = document.getElementById("validation-text");
+var guidanceMessage = document.getElementById("input-message");
 
 function validateFormInput(){
 
@@ -28,4 +29,8 @@ function goToDataSelection(){
         ["css/data_selection.css"],
         ["js/data_selection.js"]
     );
+}
+
+if('input_message' in template.templateData){
+    guidanceMessage.innerHTML = template.templateData['input_message'];
 }
