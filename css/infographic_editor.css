@@ -96,24 +96,24 @@ h2{
     background-color: #fbc035;
     overflow-y: scroll;
 }
-    #infographic-editor .data-editor .data-row{
+    #infographic-editor .data-editor-table .data-row{
         display: -webkit-flex; /* Safari */
         -webkit-align-items: center; /* Safari 7.0+ */
         display: flex;
         align-items: center;
         margin: 10px;
     }
-    #infographic-editor .data-editor .data-row label{
+    #infographic-editor .data-editor-table .data-row label{
         padding-left: 10px;
         width:100px;
         text-align: start;
     }
-    #infographic-editor .data-editor .data-row .color-input{
+    #infographic-editor .data-editor-table .data-row .color-input{
         width: 30px;
         border: none;
         padding: 0;
     }
-    #infographic-editor .data-editor .data-row .count-input{
+    #infographic-editor .data-editor-table .data-row .count-input{
         width: 100px;
     }
 #infographic-editor .data-editor-opened{

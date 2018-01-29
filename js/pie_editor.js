@@ -1,6 +1,8 @@
 
 function populateEditSurface(information,container){
 	var editor = document.querySelector(container);
+	var editorTable = document.createElement('div');
+	setAttributes(editorTable,{'class':'data-editor-table','id':'chart-editor-table'});
 	data = information.data;
 	for(var i = 0 ;i < data.length;i++){
 		var newSlice = document.createElement("div");
@@ -19,8 +21,9 @@ function populateEditSurface(information,container){
 		newSlice.appendChild(colorInput);
 		newSlice.appendChild(sliceLabel);
 		newSlice.appendChild(countInput);
-		editor.appendChild(newSlice);	
+		editorTable.appendChild(newSlice);	
 	}
+	editor.appendChild(editor);
 	var inputs =  document.querySelectorAll(container +' input');
 	for(var i = 0; i < inputs.length; i++){
 		inputs[i].onchange = function(){

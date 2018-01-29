@@ -44,7 +44,7 @@ document.getElementById('edit-data-button').onclick = function(){
 };
 document.getElementById('restart-draw-button').onclick = function(){
 	closeEditPanel();
-	completeInformation.data = JSON.parse(completeInformation.text);
+	completeInformation.data = JSON.parse(completeInformation.metadata.text);
 	generate(completeInformation, '.drawing-surface-content');
 };
 // document.getElementById('update-infographic-button').onclick = function(){
