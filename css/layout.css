@@ -68,7 +68,6 @@ h6{
     outline: none;
     text-decoration: none;
     transition: background-color 300ms, border-color 700ms;
-    margin-top: 30px;
     font-size: 20px;
     cursor: pointer;
 }
@@ -83,7 +82,6 @@ h6{
 
 .category{
     display: inline-block;
-    margin: 20px;
     position: relative;
     
 }
@@ -111,10 +109,6 @@ h6{
     width: 90%;
     padding: 10% 5%;
     cursor:pointer;
-}
-
-#category-selection-page .section-bottom-content , #chart-type-selection-page .section-bottom-content {
-    margin-top: 40px;
 }
 
 @media only screen and (max-width: 451px) , (max-height: 451px){

@@ -41,10 +41,10 @@ function createRectangle(xCoord, yCoord, width, height,color) {
 // }
 
 function generate(information,container){
+    var updatedData = [];
+    document.querySelector(container).innerHTML = "";
     var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
     var data = information.data;
-    console.log(data);
-    console.log(data.length);
     var height = 500;
     var width = 500;
     var x = 0;
@@ -53,17 +53,22 @@ function generate(information,container){
     });
     var max_count = data[0].count;
     data.forEach(function(element){
-        var rndColor = getRandomColor();
-        var rectHeight = height * element.count / max_count;
+        var rectHeight = height * parseInt(element.count) / max_count;
         var rectWidth = width/data.length;
         var y = height - rectHeight;
-        var newRect = createRectangle(x,y,rectWidth,rectHeight,rndColor);
+        var fillColor = element.color == undefined ? getRandomColor() : element.color;
+        var newRect = createRectangle(x,y,rectWidth,rectHeight,fillColor);
         newSVG.appendChild(newRect);
         x += rectWidth;
+        updatedData.push({
+            "name":element.name,
+            "count":parseInt(element.count),
+            "color":fillColor
+        });
     });
     newSVG.setAttribute('height','100%');
     newSVG.setAttribute('width','100%');
     newSVG.setAttribute('viewBox','0 0 500 500');
-    newSVG.style.tranform = "rotate(180deg)";
     document.querySelector(container).appendChild(newSVG);
+    return updatedData;
 }

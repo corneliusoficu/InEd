@@ -20,7 +20,7 @@ function loadInfographicGeneratorScript(callback){
 }
 
 loadInfographicGeneratorScript(function (){
-	if (metadata_info.subcategory == "pie"){
+	if (metadata_info.category == "chart"){
 		completeInformation.data = generate(completeInformation, '.drawing-surface-content');
 	}else{
 		generate(completeInformation, '.drawing-surface-content');
@@ -28,14 +28,20 @@ loadInfographicGeneratorScript(function (){
 	populateEditSurface(completeInformation,'.data-editor');
 });
 function openEditPanel(){
-	document.querySelector('.data-editor').className+=" "+"data-editor-opened";
 	document.querySelector('.drawing-surface').className+=" "+"drawing-surface-thin";
 	toggledEditPanel = true;
+	setTimeout(function(){
+		document.querySelector('.data-editor').style.display = 'block';
+		document.querySelector('.data-editor').className+=" "+"data-editor-opened";
+	},100);
 }
 function closeEditPanel(){
 	document.querySelector('.data-editor').className ="data-editor";
 	document.querySelector('.drawing-surface').className = "drawing-surface";
 	toggledEditPanel = false;
+	setTimeout(function(){
+		document.querySelector('.data-editor').style.display = 'none';
+	},1000);
 }
 
 document.getElementById('edit-data-button').onclick = function(){

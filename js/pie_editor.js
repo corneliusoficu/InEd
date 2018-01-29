@@ -29,7 +29,6 @@ function populateEditSurface(information,container){
 		inputs[i].onchange = function(){
 			var rowNumber = this.parentElement.getAttribute('data-row-count');
 			var propertyType = this.getAttribute('class').split('-')[0];
-			console.log(propertyType);
 			information.data[rowNumber][propertyType] = this.value;
 			generate(information, '.drawing-surface-content');
 		};

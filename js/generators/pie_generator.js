@@ -82,7 +82,7 @@ function generate(information,container){
     colors = [];
     sectors = calculateSectors(information.data,500);
     var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
-    document.querySelector(container).appendChild(newSVG);
+    document.querySelector(container).innerHTML = "";
     updatedData = [];
     sectors.forEach( function(sector) {
         var newSector = document.createElementNS( "http://www.w3.org/2000/svg","path" );
@@ -96,9 +96,10 @@ function generate(information,container){
             "color":sector.color
         });
     });
+    console.log(sectors);
     newSVG.setAttribute('height','100%');
     newSVG.setAttribute('width','100%');
     newSVG.setAttribute('viewBox','0 0 500 500');
-
+    document.querySelector(container).appendChild(newSVG);
     return updatedData;
 }

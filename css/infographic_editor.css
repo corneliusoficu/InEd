@@ -54,6 +54,7 @@ h2{
 
 
 #infographic-editor .drawing-surface{
+    display: none;
    -webkit-transition: width 1s;
     transition: width 1s;
     position: absolute;
@@ -89,7 +90,7 @@ h2{
     transition: right 1s;
     position: absolute;
     top: 0px;
-    right: -389px;
+    right: -250px;
     width: calc( 20% - 10px);
     height: 100%;
     opacity: 0.5;
