@@ -200,7 +200,7 @@ function getFileFromForm(form){
             uploadedData = JSON.parse(metadata_info.text);
             uploadSuccessfull(uploadedData);
         }
-    },300);
+    },1000);
 
 }
 

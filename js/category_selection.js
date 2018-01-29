@@ -13,8 +13,6 @@ function setMetadataInformation(item){
         metadata.clearMetadata();
         metadata.set("category", item.id);
     }
-
-    console.log(metadata_info);
 }
 
 for(var index = 0; index < square_button_categories.length; index++){
@@ -28,9 +26,9 @@ for(var index = 0; index < square_button_categories.length; index++){
             case 'chart':
                 template.loadPartialWithAssets(
                     'body',
-                    "data_selection.html",
-                    ["css/data_selection.css"],
-                    ["js/data_selection.js"]
+                    "chart_type_selection.html",
+                    ["css/chart_type_selection.css"],
+                    ["js/chart_type_selection.js"]
                 );
                 break;
             case 'map':

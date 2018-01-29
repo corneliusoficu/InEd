@@ -81,8 +81,8 @@ function calculateSectors(data,size) {
     return sectors
 }
 
-function renderPieChart(data,canvas,size){
-    sectors = calculateSectors(data,size);
+function generate(data,canvas){
+    sectors = calculateSectors(,500);
     var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
     canvas.appendChild(newSVG);
     sectors.map( function(sector) {
