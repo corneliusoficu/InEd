@@ -1,98 +1,69 @@
-//chart data
-var chartjson = {
-  "title": "Students Academic Scores",
-  "data": [{
-    "name": "Megan",
-    "score": 78
-  }, {
-    "name": "Teegan",
-    "score": 73
-  }, {
-    "name": "Jamalia",
-    "score": 20
-  }, {
-    "name": "Quincy",
-    "score": 89
-  }, {
-    "name": "Darryl",
-    "score": 24
-  }, {
-    "name": "Jescie",
-    "score": 86
-  }, {
-    "name": "Quemby",
-    "score": 2
-  }, {
-    "name": "McKenzie",
-    "score": 71
-  }],
-  "xtitle": "Secured Marks",
-  "ytitle": "Marks",
-  "ymax": 100,
-  "ykey": 'score',
-  "xkey": "name",
-  "prefix": "%"
+var colors = [];
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+    }
+    if(colors.includes(color) == false){
+        colors.push(color);
+        return color;
+    }
+    else return getRandomColor();
+}
+function createRectangle(xCoord, yCoord, width, height,color) {
+    var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    newRect.setAttributeNS(null, "width", width);
+    newRect.setAttributeNS(null, "height", height);
+    newRect.setAttributeNS(null, "x", xCoord);
+    newRect.setAttributeNS(null, "y", yCoord);
+    newRect.setAttributeNS(null, "fill", color);
+    return newRect;
 }
 
-//chart colors
-var colors = ['#16A085', '#2ECC71', '#27AE60', '#3498DB', '#2980B9', '#9B59B6', '#8E44AD', '#34495E', '#2C3E50', '#22313f', '#F1C40F', '#F39C12', '#E67E22', '#D35400'];
+// function createLabel(index, xCoord, yCoord, id) {
+//   var newText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+//   newText.textContent = data.labelText[index] + " (" + data.values[index]+ ")";
+//   newText.setAttributeNS(null, "id", "label_" + id);
+//   newText.setAttributeNS(null, "fill", data.labelColors[index%data.labelColors.length]);
+//   newText.setAttributeNS(null, "font-family", data.labelFont);
+//   newText.setAttributeNS(null, "x", xCoord);
+//   newText.setAttributeNS(null, "y", yCoord + data.barHeight/2);
+//   newText.style.visibility = "hidden";
+//   return newText;
+// }
 
-//constants
-var TROW = 'tr',
-  TDATA = 'td';
 
-var chart = document.createElement('div');
-//create the chart canvas
-var barchart = document.createElement('table');
-//create the title row
-var titlerow = document.createElement(TROW);
-//create the title data
-var titledata = document.createElement(TDATA);
-//make the colspan to number of records
-titledata.setAttribute('colspan', chartjson.data.length + 1);
-titledata.setAttribute('class', 'charttitle');
-titledata.innerText = chartjson.title;
-titlerow.appendChild(titledata);
-barchart.appendChild(titlerow);
-chart.appendChild(barchart);
+// function displayLabels() {
+//   for(var i=0; i<data.labelsObjects.length; ++i) {
+//     data.labelsObjects[i].style.visibility = "visible";
+//   }
+// }
 
-//create the bar row
-var barrow = document.createElement(TROW);
-
-//lets add data to the chart
-for (var i = 0; i < chartjson.data.length; i++) {
-  barrow.setAttribute('class', 'bars');
-  var prefix = chartjson.prefix || '';
-  //create the bar data
-  var bardata = document.createElement(TDATA);
-  var bar = document.createElement('div');
-  bar.setAttribute('class', colors[i]);
-  bar.style.height = chartjson.data[i][chartjson.ykey] + prefix;
-  bardata.innerText = chartjson.data[i][chartjson.ykey] + prefix;
-  bardata.appendChild(bar);
-  barrow.appendChild(bardata);
+function generate(information,container){
+    var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
+    var data = information.data;
+    console.log(data);
+    console.log(data.length);
+    var height = 500;
+    var width = 500;
+    var x = 0;
+    data.sort(function(a,b){
+        return b.count - a.count;
+    });
+    var max_count = data[0].count;
+    data.forEach(function(element){
+        var rndColor = getRandomColor();
+        var rectHeight = height * element.count / max_count;
+        var rectWidth = width/data.length;
+        var y = height - rectHeight;
+        var newRect = createRectangle(x,y,rectWidth,rectHeight,rndColor);
+        newSVG.appendChild(newRect);
+        x += rectWidth;
+    });
+    newSVG.setAttribute('height','100%');
+    newSVG.setAttribute('width','100%');
+    newSVG.setAttribute('viewBox','0 0 500 500');
+    newSVG.style.tranform = "rotate(180deg)";
+    document.querySelector(container).appendChild(newSVG);
 }
-
-//create legends
-var legendrow = document.createElement(TROW);
-var legend = document.createElement(TDATA);
-legend.setAttribute('class', 'legend');
-legend.setAttribute('colspan', chartjson.data.length);
-
-//add legend data
-for (var i = 0; i < chartjson.data.length; i++) {
-  var legbox = document.createElement('span');
-  legbox.setAttribute('class', 'legbox');
-  var barname = document.createElement('span');
-  barname.setAttribute('class', colors[i] + ' xaxisname');
-  var bartext = document.createElement('span');
-  bartext.innerText = chartjson.data[i][chartjson.xkey];
-  legbox.appendChild(barname);
-  legbox.appendChild(bartext);
-  legend.appendChild(legbox);
-}
-barrow.appendChild(legend);
-barchart.appendChild(barrow);
-barchart.appendChild(legendrow);
-chart.appendChild(barchart);
-document.getElementById('chart').innerHTML = chart.outerHTML;

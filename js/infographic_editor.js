@@ -20,10 +20,7 @@ function loadInfographicGeneratorScript(callback){
 }
 
 loadInfographicGeneratorScript(function (){
-	if(metadata_info.category == "map"){
-		generate(completeInformation, '.drawing-surface-content');
-	}
-	else if (metadata_info.category == "chart"){
+	if (metadata_info.subcategory == "pie"){
 		completeInformation.data = generate(completeInformation, '.drawing-surface-content');
 	}else{
 		generate(completeInformation, '.drawing-surface-content');

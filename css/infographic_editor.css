@@ -132,18 +132,6 @@ h2{
     right: 10px;
 }
 
-
-svg{
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-
 @media screen and (max-width: 630px){
     #infographic-editor .drawing-surface-thin{
         display: none;
