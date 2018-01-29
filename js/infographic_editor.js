@@ -33,7 +33,7 @@ document.getElementById('edit-data-button').onclick = function(){
 };
 
 generateInfographic = function(){
-    generate(completeInformation['data'], '.drawing-surface-content','500');
+    generate(completeInformation, '.drawing-surface-content');
 };
 
 loadInfographicGeneratorScript(generateInfographic);

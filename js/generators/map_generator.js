@@ -116,6 +116,9 @@ function generate(information, container){
     getRemoteResource(container, svgLink);
     generateMap(information);
     addTooltipEvents(information.data);
+    document.querySelector('svg').setAttribute('height','100%');
+    document.querySelector('svg').setAttribute('width','100%');
+    document.querySelector('svg').setAttribute('viewBox','0 0 800 800');
 }
 
 var map_data = {
