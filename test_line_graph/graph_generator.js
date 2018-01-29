@@ -3,6 +3,8 @@ var svg;
 var dataGroup;
 
 var CIRCLE_RADIUS = 1;
+var zoomX = 1;
+var zoomY = 1;
 
 function drawLineAxis(x1, x2, y1, y2){
     var newLineGroup = document.createElementNS(SVG_URL, "g");
@@ -19,6 +21,10 @@ function drawLineAxis(x1, x2, y1, y2){
 
 }
 
+function drawAxisXPoints(points, minX, maxX){
+    
+}
+
 function drawPoint(x, y, value){
     var newPoint = document.createElementNS(SVG_URL, "circle");
     newPoint.setAttributeNS(null, "cx", x);
@@ -32,7 +38,6 @@ reducer = (accumulator, currentValue) => accumulator+ ' ' + currentValue.x + ','
 
 function drawPolyline(points){
     var commaSeparatedPoints = points.reduce(reducer, "");
-    console.log(commaSeparatedPoints);
     var newPolyline = document.createElementNS(SVG_URL, "polyline");
     newPolyline.setAttributeNS(null, "fill", "none");
     newPolyline.setAttributeNS(null, "stroke", "#0074d9");
@@ -59,8 +64,9 @@ function sortPointsY(a, b){
 
 function applyStatisticalSeparation(points){
     points.map(function(obj){
-        obj.x = 4 * obj.x;
-        obj.y = obj.y / 2;
+        obj.x = zoomX * obj.x;
+        console.log(obj.x);
+        obj.y = obj.y;
         return obj;
     });
 }
@@ -89,18 +95,14 @@ function findBoundingPoints(points){
         return a.y == Math.max(a.y, b.y)? a: b;
     }).y;
 
-    console.log(boundingPoints);
     return boundingPoints;
 
 }
 
-function generate(information, container){
-    svg = document.createElementNS( SVG_URL, "svg" );
-    
+function createGraph(information, container){
     var surface = document.querySelector(container);
     surface.appendChild(svg);
     
-
     dataGroup = document.createElementNS(SVG_URL, "g");
     dataGroup.setAttributeNS(null, "class", "data");
     
@@ -108,14 +110,13 @@ function generate(information, container){
 
     svg.setAttribute('height','100%');
     svg.setAttribute('width','100%');
-    svg.setAttribute('viewBox','0 0 500 500');
+    svg.setAttribute('viewBox','0 0 1024 500');
 
    
     applyStatisticalSeparation(information);
 
     var boundingPoints = findBoundingPoints(information);
 
-    console.log(boundingPoints);
     drawLineAxis(boundingPoints.minX, boundingPoints.minX, boundingPoints.minY, boundingPoints.maxY);
     drawLineAxis(boundingPoints.minX, boundingPoints.maxX ,boundingPoints.maxY ,boundingPoints.maxY);
 
@@ -128,6 +129,48 @@ function generate(information, container){
     for(var index = 0, lenPoints = information.length; index < lenPoints; index++){
         drawPoint(information[index].x, information[index].y, information[index].value);
     }
+}
+
+function generate(information, container){
+    svg = document.createElementNS( SVG_URL, "svg" );
+    createGraph(information, container);
+    
+}
+
+function clearInner(node){
+    while(node.hasChildNodes()){
+        clear(node.firstChild);
+    }
+}
+
+function clear(node){
+    while(node.hasChildNodes()){
+        clear(node.firstChild);
+    }
+    node.parentNode.removeChild(node);
+}
+
+var backupPoints;
+
+
+
+function zoomInGraph(){
+    
+    zoomX += 1;
+    zoomY += 0.3;
+    console.log(zoomX);
+    clearInner(svg);
+    var clonedPoints = points.map(a=>Object.assign({}, a));
+    createGraph(clonedPoints, ".drawing-board");
+}
+
+function zoomOutGraph(){
+    zoomX -= 1;
+    zoomY -= 0.3;
+    console.log(zoomX);
+    clearInner(svg);
+    var clonedPoints = points.map(a=>Object.assign({}, a));
+    createGraph(clonedPoints, ".drawing-board");
 }
 
 var points = [
@@ -183,4 +226,6 @@ var points = [
     { x: 49, y: 3 , value: "" }
 ]
 
-generate(points, ".drawing-board");
+
+var clonedPoints = points.map(a=>Object.assign({}, a));
+generate(clonedPoints, ".drawing-board");
