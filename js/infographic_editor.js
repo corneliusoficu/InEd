@@ -20,7 +20,12 @@ function loadInfographicGeneratorScript(callback){
 }
 
 loadInfographicGeneratorScript(function (){
-	completeInformation.data = generate(completeInformation, '.drawing-surface-content');
+	if(metadata_info.category == "map"){
+		generate(completeInformation, '.drawing-surface-content');
+	}
+	else if (metadata_info.category == "chart"){
+		completeInformation.data = generate(completeInformation, '.drawing-surface-content');
+	}
 	populateEditSurface(completeInformation,'.data-editor');
 });
 function openEditPanel(){

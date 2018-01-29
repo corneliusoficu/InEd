@@ -23,7 +23,7 @@ function populateEditSurface(information,container){
 		newSlice.appendChild(countInput);
 		editorTable.appendChild(newSlice);	
 	}
-	editor.appendChild(editor);
+	editor.appendChild(editorTable);
 	var inputs =  document.querySelectorAll(container +' input');
 	for(var i = 0; i < inputs.length; i++){
 		inputs[i].onchange = function(){

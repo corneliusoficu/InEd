@@ -116,6 +116,18 @@ h2{
     #infographic-editor .data-editor-table .data-row .count-input{
         width: 100px;
     }
+    #map-editor-table{
+        margin-top: 70px;
+        width: 70%;
+        margin-left: 70px;
+    }
+    #map-editor-table .data-row{
+        border-top: 1px solid grey;
+        width: 200px;
+    }
+    #map-editor-table label{
+        padding:0;
+    }
 #infographic-editor .data-editor-opened{
     right: 10px;
 }

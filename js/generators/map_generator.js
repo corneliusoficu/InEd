@@ -27,8 +27,6 @@ function cursorPoint(evt){
     pt.y = evt.clientY + 500;
 
     transfom = pt.matrixTransform(svg.getScreenCTM().inverse());
-
-    return transfom;
 }
 
 function getRemoteResourceSVG(containerSelector, partialUrl, callback){
@@ -170,6 +168,7 @@ function generate(information, container){
     createTooltip();
     addTooltipEvents(information.data);
 
+    return information;
 }
 
 var tooltip;
