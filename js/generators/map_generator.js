@@ -108,6 +108,16 @@ function calculateProportions(numbersArray)
     return proportions;
 }
 
+function extractAllValuesByKeyName(objectsArray, key){
+    var arrayValues = []
+    for(index = 0, objectsLen = objectsArray.length; index < objectsLen; index++){
+        if(key in objectsArray[index]){
+            arrayValues.push(objectsArray[index][key]);
+        }
+    }
+    return arrayValues;
+}
+
 function generateMap(information)
 {
     if(!validate(information.data))
@@ -118,7 +128,8 @@ function generateMap(information)
     mapData = information.data;
 
     var proportions = [];
-    var values = Object.values(mapData);
+    
+    var values = extractAllValuesByKeyName(information.data, "count");
     
     if("configuration" in information.metadata){
         switch(information.metadata.configuration){
@@ -135,10 +146,9 @@ function generateMap(information)
         }
     }
 
-
     var arrayColors = proportions.map(x => getColorForPercentage(x));
 
-    var regions = Object.keys(mapData);
+    var regions = extractAllValuesByKeyName(information.data, "name");
 
     for(index = 0, lengthRegions = regions.length; index < lengthRegions; index++)
     {

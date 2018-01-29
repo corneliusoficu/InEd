@@ -143,6 +143,7 @@ function loadFileFromLink(apiUrl){
     };
     xhr.send();
 }
+
 function displayProcessingStatus(){
     var currentWindow = document.getElementsByClassName('section-bottom-data-selection')[0];
     var loadingWindow = document.getElementsByClassName('processing-status')[0];
@@ -205,8 +206,13 @@ function getFileFromForm(form){
             if(metadata_info.extension == "csv"){
                 metadata_info.text = csvTojs(metadata_info.text);
             }
-            uploadedData = JSON.parse(metadata_info.text);
-            uploadSuccessfull(uploadedData);
+            try{
+                uploadedData = JSON.parse(metadata_info.text);
+                uploadSuccessfull(uploadedData);
+            }
+            catch(err){
+                displayUploadError("Error with the data you provided!");
+            }
         }
     },1000);
 

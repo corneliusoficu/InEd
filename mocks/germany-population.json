@@ -1,18 +1,18 @@
-{
-        "North Rhine-Westphalia":   17837000,
-        "Bavaria":                  12542000,
-        "Baden-Wurttemberg":        10755000,  
-        "Lower Saxony":             7914000,
-        "Hesse":                    6066000,
-        "Saxony":                   4143000,
-        "Rhineland-Palatinate":     4052803,
-        "Berlin":                   3469000,
-        "Schleswig-Holstein":       2833000,
-        "Brandenburg":              2500000,
-        "Saxony-Anhalt":            2331000,
-        "Thuringia":                2231000,	 	
-        "Hamburg":                  1788000,
-        "Mecklenburg-Vorpommern":   1639000,
-        "Saarland":                 1018000,
-        "Bremen":                   0
-}
+[
+        {"name": "North Rhine-Westphalia", "count" : 17837000 },
+        {"name": "Bavaria", "count" : 12542000 },
+        {"name": "Baden-Wurttemberg", "count" : 10755000 },  
+        {"name": "Lower Saxony", "count" : 7914000 },
+        {"name": "Hesse", "count" : 6066000 },
+        {"name": "Saxony", "count" : 4143000 },
+        {"name": "Rhineland-Palatinate", "count" : 4052803 },
+        {"name": "Berlin", "count" : 3469000 },
+        {"name": "Schleswig-Holstein", "count" : 2833000 },
+        {"name": "Brandenburg", "count" : 2500000 },
+        {"name": "Saxony-Anhalt", "count" : 2331000 },
+        {"name": "Thuringia", "count" : 2231000 },	 	
+        {"name": "Hamburg", "count" : 1788000 },
+        {"name": "Mecklenburg-Vorpommern", "count" : 1639000 },
+        {"name": "Saarland", "count" : 1018000 },
+        {"name": "Bremen", "count": 0}
+]
