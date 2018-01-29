@@ -22,18 +22,10 @@ function uploadSuccessfull(uploadedData){
 }
 
 function csvTojs(csv) {
-    var chartColumns = ["name","count","color"];
-    var mapColumns = ["Tag","Count"];
-    var headers = null;
-    if(metadata_info.category == "chart"){
-        headers = chartColumns;
-    }
-    if(metadata_info.category == "map"){
-        headers = mapColumns;
-    }
 
     var lines=csv.split("\n");
-    var result = {};
+    var result = [];
+    var header = [];
     for(var i=0; i<lines.length; i++) {
 
         var row = lines[i];
@@ -71,13 +63,22 @@ function csvTojs(csv) {
             ++idx;
         }
 
-        if("category" in metadata_info && metadata_info.category == "map"){
-            if(separatedRowValues.length >= 2)
-            {
-                result[separatedRowValues[0]] = separatedRowValues[1];
-            }
+        if(i == 0){
+            header = separatedRowValues;
         }
-
+        else
+        {
+            var object = {};
+            separatedRowValuesLen = separatedRowValues.length;
+            if(separatedRowValuesLen > 0)
+            {
+                for(var index = 0; index < separatedRowValuesLen; index++){
+                    object[header[index]] = separatedRowValues[index];
+                }
+            }
+            
+            result.push(object);
+        }
     }
 
     console.log(result);

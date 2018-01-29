@@ -1,6 +1,9 @@
 var SVG_LOCATION = "res/svg";
 var svg;
 
+var REGION_NAME_KEY = "name";
+var REGION_VALUE_KEY = "count";
+
 var percentColors = [
     { pct: 0.0, color: { r: 0x00, g: 0x64, b: 0 } },
     { pct: 0.5, color: { r: 0xff, g: 0xff, b: 0 } },
@@ -127,7 +130,7 @@ function generateMap(information)
 
     var proportions = [];
     
-    var values = extractAllValuesByKeyName(information.data, "count");
+    var values = extractAllValuesByKeyName(information.data, REGION_VALUE_KEY);
     
     if("configuration" in information.metadata){
         switch(information.metadata.configuration){
@@ -146,7 +149,7 @@ function generateMap(information)
 
     var arrayColors = proportions.map(x => getColorForPercentage(x));
 
-    var regions = extractAllValuesByKeyName(information.data, "name");
+    var regions = extractAllValuesByKeyName(information.data, REGION_NAME_KEY);
 
     for(index = 0, lengthRegions = regions.length; index < lengthRegions; index++)
     {
@@ -189,6 +192,20 @@ function mouseOutCountry(evt){
     tooltip.setAttribute("visibility", "hidden");
 }
 
+function findValueInObjectsArray(keySearched){
+    
+    for(index = 0, len = information.length; index < len; index++){
+        object = information[index];
+        if(REGION_NAME_KEY in object && object[REGION_NAME_KEY] == keySearched){
+            if(REGION_VALUE_KEY in object){
+                return object[REGION_VALUE_KEY];
+            }
+        }
+    }
+
+    return 'Unknown';
+}
+
 function mouseOverCountry(evt){
     
     var loc = cursorPoint(evt);
@@ -199,11 +216,9 @@ function mouseOverCountry(evt){
 
     title = evt.target.getAttribute('title');
     tooltip.innerHTML = title;
-    if(title in information){
-        tooltip.innerHTML +=": " + information[title];
-    }else{
-        tooltip.innerHTML +=": unknown";
-    }
+    value = findValueInObjectsArray(title);
+    
+    tooltip.innerHTML +=": " + value;
 
     tooltip.setAttribute("visibility", "visible");
 }
