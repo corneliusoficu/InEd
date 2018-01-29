@@ -1,13 +1,13 @@
 [
-	{"tag":"Audi","count":30},
-	{"tag":"BMW","count":20},
-	{"tag":"Honda","count":10},
-	{"tag":"Mercedes","count":10},
-	{"tag":"Dacia","count":40},
-	{"tag":"Reno","count":30},
-	{"tag":"Dayhatu","count":11},
-	{"tag":"Toyota","count":14},
-	{"tag":"Volkswagen","count":18},
-	{"tag":"Lancia","count":23},
-	{"tag":"Alfa Romeo","count":19}
+	{"name":"Audi","count":30},
+	{"name":"BMW","count":20},
+	{"name":"Honda","count":10},
+	{"name":"Mercedes","count":10},
+	{"name":"Dacia","count":40},
+	{"name":"Reno","count":30},
+	{"name":"Dayhatu","count":11},
+	{"name":"Toyota","count":14},
+	{"name":"Volkswagen","count":18},
+	{"name":"Lancia","count":23},
+	{"name":"Alfa Romeo","count":19}
 ]

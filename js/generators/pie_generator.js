@@ -1,19 +1,20 @@
+var colors = [];
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+    }
+    if(colors.includes(color) == false){
+        colors.push(color);
+        return color;
+    }
+    else return getRandomColor();
+}
+
 function calculateSectors(data,size) {
     var sectors = [];
-    var colors = [
-        "#050864",
-        "#61C0BF",
-        "#f49d41",
-        "#DA507A", 
-        "#BB3D49",
-        "#f4f141",
-        "#DB4547",
-        "#42b3f4",
-        "#8E7F7C",
-        "#5D63FF",
-        "#E5E4E2",
-    ];
-
     var l = size / 2
     var a = 0 // Angle
     var aRad = 0 // Angle in Rad
@@ -26,22 +27,19 @@ function calculateSectors(data,size) {
 
     var sectorsData = []
     var totalCount = 0
-    for (key in data){
-        totalCount += parseInt(data[key].count)
+    for (var i = 0; i < data.length; i++){
+        totalCount += parseInt(data[i].count);
     }
-    for (key in data){
-        sectorPercentage = parseFloat(data[key].count) / parseFloat(totalCount);
-        sectorColor = data[key].color != undefined ? data[key].color : colors.pop();
+    for (var i = 0; i < data.length; i++){
+        var sectorPercentage = parseFloat(data[i].count) / parseFloat(totalCount);
         sectorsData.push({
-            label:key,
-            count:data[key].count,
+            name:data[i].name,
+            count:data[i].count,
             percentage:sectorPercentage,
-            color:sectorColor
+            color: data[i].color == undefined ? getRandomColor() : data[i].color
         });
     }
-
-
-    sectorsData.map( function(item, key ) {
+    sectorsData.forEach(function(item){
         a = 360 * item.percentage;
         aCalc = ( a > 180 ) ? 360 - a : a;
         aRad = aCalc * Math.PI / 180;
@@ -67,35 +65,40 @@ function calculateSectors(data,size) {
         sectors.push({
             percentage: item.percentage,
             count : item.count,
-            label: item.label,
-            color: item.color != undefined ? item.color : colors[key],
+            name: item.name,
+            color: item.color,
             arcSweep: arcSweep,
             L: l,
             X: X,
             Y: Y,
             R: R
         });
-
         R = R + a;
-    })
+    });
     return sectors
 }
 
 function generate(information,container){
+    colors = [];
     sectors = calculateSectors(information.data,500);
     var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
     document.querySelector(container).appendChild(newSVG);
-    sectors.map( function(sector) {
-
+    updatedData = [];
+    sectors.forEach( function(sector) {
         var newSector = document.createElementNS( "http://www.w3.org/2000/svg","path" );
         newSector.setAttributeNS(null, 'fill', sector.color);
         newSector.setAttributeNS(null, 'd', 'M' + sector.L + ',' + sector.L + ' L' + sector.L + ',0 A' + sector.L + ',' + sector.L + ' 0 ' + sector.arcSweep + ',1 ' + sector.X + ', ' + sector.Y + ' z');
         newSector.setAttributeNS(null, 'transform', 'rotate(' + sector.R + ', '+ sector.L+', '+ sector.L+')');
         newSVG.appendChild(newSector);
-        newSVG.setAttribute('height','100%');
-        newSVG.setAttribute('width','100%');
-        newSVG.setAttribute('viewBox','0 0 500 500');
-    })
+        updatedData.push({
+            "name":sector.name,
+            "count":sector.count,
+            "color":sector.color
+        });
+    });
+    newSVG.setAttribute('height','100%');
+    newSVG.setAttribute('width','100%');
+    newSVG.setAttribute('viewBox','0 0 500 500');
+
+    return updatedData;
 }
-
-
