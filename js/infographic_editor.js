@@ -10,7 +10,7 @@ function loadInfographicGeneratorScript(callback){
     	if(metadata_info.category == 'chart'){
     		SCRIPT_NAME_MIDDLE = metadata_info.subcategory;
     	}
-    	if(metadata_info.category == 'map'){
+    	else{
     		SCRIPT_NAME_MIDDLE = metadata_info.category;
     	}
 	    var generatorScriptName = SCRIPT_FILE_PATH + SCRIPT_NAME_MIDDLE + SCRIPT_NAME_ENDING;
@@ -25,6 +25,8 @@ loadInfographicGeneratorScript(function (){
 	}
 	else if (metadata_info.category == "chart"){
 		completeInformation.data = generate(completeInformation, '.drawing-surface-content');
+	}else{
+		generate(completeInformation, '.drawing-surface-content');
 	}
 	populateEditSurface(completeInformation,'.data-editor');
 });
