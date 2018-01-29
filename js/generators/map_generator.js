@@ -29,6 +29,7 @@ function getRemoteResourceSVG(containerSelector, partialUrl, callback){
         svgElement = document.querySelector("svg");
         svgElement.setAttribute("height", "100%");
         svgElement.setAttribute("width", "100%");
+        svgElement.setAttribute('viewBox','0 0 800 800');
 
     }else{
         alert("We couldn't find any resource for the data you specified!");
@@ -137,9 +138,7 @@ function generate(information, container){
     generateMap(information);
     createTooltip();
     addTooltipEvents(information.data);
-    document.querySelector('svg').setAttribute('height','100%');
-    document.querySelector('svg').setAttribute('width','100%');
-    document.querySelector('svg').setAttribute('viewBox','0 0 800 800');
+
 }
 
 var tooltip;
