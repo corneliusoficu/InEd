@@ -1,8 +1,4 @@
 {
-    "measurement":    "population",
-    "area_id" :       "germany",
-    "number_type" :   "numerical",
-    "regions" : {
         "North Rhine-Westphalia":   17837000,
         "Bavaria":                  12542000,
         "Baden-Wurttemberg":        10755000,  
@@ -19,5 +15,4 @@
         "Mecklenburg-Vorpommern":   1639000,
         "Saarland":                 1018000,
         "Bremen":                   0
-    }
 }

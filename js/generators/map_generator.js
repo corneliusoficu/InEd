@@ -6,7 +6,18 @@ var percentColors = [
     { pct: 1.0, color: { r: 0xff, g: 0x00, b: 0 } }
 ];
 
-function getRemoteResource(containerSelector, partialUrl, callback){
+function createTooltip(){
+    var tooltipTextElement =document.createElementNS("http://www.w3.org/2000/svg", "text");
+    tooltipTextElement.setAttribute('id', "tooltip");
+    tooltipTextElement.setAttribute("class", "tooltip");
+    tooltipTextElement.setAttribute('x', 0);
+    tooltipTextElement.setAttribute('y', 0);
+    tooltipTextElement.setAttribute('visibility', "hidden");
+    document.querySelector("svg g").appendChild(tooltipTextElement);
+    console.log(tooltipTextElement);
+}
+
+function getRemoteResourceSVG(containerSelector, partialUrl, callback){
 	var container = document.querySelector(containerSelector);
 	container.innerHTML = "";
     var xhr= new XMLHttpRequest();
@@ -15,6 +26,10 @@ function getRemoteResource(containerSelector, partialUrl, callback){
 
     if(xhr.status == 200){
         container.innerHTML += xhr.responseText;
+        svgElement = document.querySelector("svg");
+        svgElement.setAttribute("height", "100%");
+        svgElement.setAttribute("width", "100%");
+
     }else{
         alert("We couldn't find any resource for the data you specified!");
     }
@@ -81,14 +96,19 @@ function generateMap(information)
     mapData = information.data;
 
     var proportions = [];
-    var numbers = Object.values(mapData.regions);
-    proportions = calculateProportions(numbers);
-
-    console.log(information.metadata);
+    var numbers = Object.values(mapData);
+    
     if("configuration" in information.metadata){
         switch(information.metadata.configuration){
             case "Population":
+                proportions = calculateProportions(numbers);
                 proportions = applyStatisticalDataTransformation(proportions);
+                break;
+            case "Percentage":
+                proportions = numbers;
+                break;
+            default:
+                proportions = calculateProportions(numbers);
                 break;
         }
     }
@@ -96,7 +116,7 @@ function generateMap(information)
 
     var arrayColors = proportions.map(x => getColorForPercentage(x));
 
-    var regions = Object.keys(mapData.regions);
+    var regions = Object.keys(mapData);
 
     for(index = 0, lengthRegions = regions.length; index < lengthRegions; index++)
     {
@@ -113,39 +133,10 @@ function generate(information, container){
     var country = information.metadata.type.toLowerCase();
     var svgLink = SVG_LOCATION + '/' + country + '.svg'; 
     
-    getRemoteResource(container, svgLink);
+    getRemoteResourceSVG(container, svgLink);
     generateMap(information);
+    createTooltip();
     addTooltipEvents(information.data);
-}
-
-var map_data = {
-    metadata: {
-        category:       "map",
-        "sub-category": "map-country",
-        type:           "Germany"
-    },
-    data:{
-        measurement:    "population",
-        number_type :   "numerical",
-        regions : {
-            "North Rhine-Westphalia":   17837000,
-            "Bavaria":                  12542000,
-            "Baden-Wurttemberg":        10755000,  
-            "Lower Saxony":             7914000,
-            "Hesse":                    6066000,
-            "Saxony":                   4143000,
-            "Rhineland-Palatinate":     4052803,
-            "Berlin":                   3469000,
-            "Schleswig-Holstein":       2833000,
-            "Brandenburg":              2500000,
-            "Saxony-Anhalt":            2331000,
-            "Thuringia":                2231000,	 	
-            "Hamburg":                  1788000,
-            "Mecklenburg-Vorpommern":   1639000,
-            "Saarland":                 1018000,
-            "Bremen":                   661000
-        }
-    }
 }
 
 var tooltip;
@@ -171,8 +162,8 @@ function mouseOverCountry(evt){
     tooltip.setAttribute("y", evt.clientY - 60);
     title = evt.target.getAttribute('title');
     tooltip.innerHTML = title;
-    if(title in information.regions){
-        tooltip.innerHTML +=": " + information.regions[title];
+    if(title in information){
+        tooltip.innerHTML +=": " + information[title];
     }else{
         tooltip.innerHTML +=": unknown";
     }
