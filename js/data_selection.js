@@ -32,48 +32,56 @@ function csvTojs(csv) {
         headers = mapColumns;
     }
 
-
     var lines=csv.split("\n");
-    var result = [];
-    for(var i=1; i<lines.length; i++) {
-    var obj = {};
+    var result = {};
+    for(var i=0; i<lines.length; i++) {
 
-    var row = lines[i],
-      queryIdx = 0,
-      startValueIdx = 0,
-      idx = 0;
+        var row = lines[i];
+        var separatedRowValues = [],
 
-    if (row.trim() === '') { continue; }
+        queryIdx = 0,
+        startValueIdx = 0,
+        idx = 0;
 
-    while (idx < row.length) {
-      /* if we meet a double quote we skip until the next one */
-      var c = row[idx];
+        if (row.trim() === '') { continue; }
+        while (idx < row.length) {
+        /* if we meet a double quote we skip until the next one */
+            var c = row[idx];
 
-      if (c === '"') {
-        do { c = row[++idx]; } while (c !== '"' && idx < row.length - 1);
-      }
+            if (c === '"') {
+                do { c = row[++idx]; } while (c !== '"' && idx < row.length - 1);
+            }
 
-      if (c === ',' || /* handle end of line with no comma */ idx === row.length - 1) {
-        /* we've got a value */
-        var value = row.substr(startValueIdx, idx - startValueIdx).trim();
+            if (c === ',' || (idx === row.length - 1 && row[idx - 1] != ',')) {
+                /* we've got a value */
+                var value = row.substr(startValueIdx, idx - startValueIdx).trim();
 
-        /* skip first double quote */
-        if (value[0] === '"') { value = value.substr(1); }
-        /* skip last comma */
-        if (value[value.length - 1] === ',') { value = value.substr(0, value.length - 1); }
-        /* skip last double quote */
-        if (value[value.length - 1] === '"') { value = value.substr(0, value.length - 1); }
+                /* skip first double quote */
+                if (value[0] === '"') { value = value.substr(1); }
+                /* skip last comma */
+                if (value[value.length - 1] === ',') { value = value.substr(0, value.length - 1); }
+                /* skip last double quote */
+                if (value[value.length - 1] === '"') { value = value.substr(0, value.length - 1); }
 
-        var key = headers[queryIdx++];
-        obj[key] = value;
-        startValueIdx = idx + 1;
-      }
+                separatedRowValues.push(value);
 
-      ++idx;
+                startValueIdx = idx + 1;
+            }
+
+            ++idx;
+        }
+
+        if("category" in metadata_info && metadata_info.category == "map"){
+            if(separatedRowValues.length >= 2)
+            {
+                result[separatedRowValues[0]] = separatedRowValues[1];
+            }
+        }
+
     }
 
-    result.push(obj);
-    }
+    console.log(result);
+
     return JSON.stringify(result);
 }
 

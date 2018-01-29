@@ -1,4 +1,5 @@
 var SVG_LOCATION = "res/svg";
+var svg;
 
 var percentColors = [
     { pct: 0.0, color: { r: 0x00, g: 0x64, b: 0 } },
@@ -17,6 +18,19 @@ function createTooltip(){
     console.log(tooltipTextElement);
 }
 
+//TODO: Fix for y coordinate
+function cursorPoint(evt){
+
+    var pt = svg.createSVGPoint();
+    
+    pt.x = evt.clientX;
+    pt.y = evt.clientY + 500;
+
+    transfom = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+    return transfom;
+}
+
 function getRemoteResourceSVG(containerSelector, partialUrl, callback){
 	var container = document.querySelector(containerSelector);
 	container.innerHTML = "";
@@ -30,6 +44,7 @@ function getRemoteResourceSVG(containerSelector, partialUrl, callback){
         svgElement.setAttribute("height", "100%");
         svgElement.setAttribute("width", "100%");
         svgElement.setAttribute('viewBox','0 0 800 800');
+        svg = svgElement;
 
     }else{
         alert("We couldn't find any resource for the data you specified!");
@@ -75,14 +90,20 @@ var sumReducer = (accumulator, currentValue) => accumulator + currentValue;
 
 function calculateProportions(numbersArray)
 {
-    var sumTotal = numbersArray.reduce(sumReducer);
-    var arrayLen = numbersArray.length;
+    newNumbersArray = numbersArray.map(x => parseFloat(x));
+
+    var sumTotal = newNumbersArray.reduce(sumReducer);
+    console.log(sumTotal);
+    console.log(newNumbersArray);
+    var arrayLen = newNumbersArray.length;
 
     var proportions = [];
     
     for (var i = 0; i < arrayLen; i++) {
-        proportions[i] = numbersArray[i] / sumTotal;
+        proportions[i] = newNumbersArray[i] / sumTotal;
     }
+
+    console.log(proportions);
 
     return proportions;
 }
@@ -97,19 +118,19 @@ function generateMap(information)
     mapData = information.data;
 
     var proportions = [];
-    var numbers = Object.values(mapData);
+    var values = Object.values(mapData);
     
     if("configuration" in information.metadata){
         switch(information.metadata.configuration){
             case "Population":
-                proportions = calculateProportions(numbers);
+                proportions = calculateProportions(values);
                 proportions = applyStatisticalDataTransformation(proportions);
                 break;
             case "Percentage":
-                proportions = numbers;
+                proportions = values;
                 break;
             default:
-                proportions = calculateProportions(numbers);
+                proportions = calculateProportions(values);
                 break;
         }
     }
@@ -160,8 +181,13 @@ function mouseOutCountry(evt){
 }
 
 function mouseOverCountry(evt){
-    tooltip.setAttribute("x", evt.clientX - 30);
-    tooltip.setAttribute("y", evt.clientY - 60);
+    
+    var loc = cursorPoint(evt);
+    
+    tooltip.setAttribute("x", Math.round(loc.x));
+    tooltip.setAttribute("y",Math.round(loc.y));
+
+
     title = evt.target.getAttribute('title');
     tooltip.innerHTML = title;
     if(title in information){
