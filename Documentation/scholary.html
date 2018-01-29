@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Infographics Web Editor - Scholarly Raport</title>
-    <link rel="stylesheet" href="schlarly.css">
-    <link rel="stylesheet" href="http://scholarly.vernacular.io/scholarly.css">
-    <script src="node_modules/prismjs/prism.js" defer></script>
+    <link rel="stylesheet" href="https://web.archive.org/web/20160914040949cs_/http://scholarly.vernacular.io/scholarly.css">
+    <!-- <script src="node_modules/prismjs/prism.js" defer></script> -->
   </head>
   <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
     <header><p class="title">Ia - Scholary Raport</p></header>
@@ -44,7 +43,8 @@
         <p>3. Interactiune cu utilizatorul</p>
         <p>4. Arhitectura si stocare date</p>
         <p>5. Verionare</p>
-        <p>6. Resurse</p>
+				<p>6. Resurse</p>
+				<p>7. Ghidul de utilizare al aplicatiei</p>
       </section>
       <section typeof="sa:MaterialsAndMethods" id="motivation">
         <h2>Descriere</h2>
@@ -52,15 +52,16 @@
 					ofere o interfata prietenoasa prin care utilizatorii pot genera si edita diverse grafice. <p>
 				<p>Aceasta primeste de la utilizator o sursa de date, care poate fi vizualizata in functie de preferintele utilizatorului, iar mai apoi descarcata intr-un format PNG sau SVG.</p>
 				<p>Utilizatorul va putea efectua diverse modificari asupra fiecarui tip de grafic disponibil.Ii va putea schimba culorile, sau modul in care sunt afisate datele prin reprezentarea acestora.</p>
+				
 				<p><a href="https://vimeo.com/">Filmuleț demonstrativ.</a></p>
 	</section>
 	<section typeof="sa:MaterialsAndMethods">
       <h2>Design General</h2>
-      	<p>Prima pagina a aplicatiei pune la dispozitia utilizatorului posibilitatea de a a selecta tipul de infografic pe care il doreste sa il genereze.</p>
+      	<p>Aceasta pagina pune la dispozitia utilizatorului posibilitatea de a selecta tipul de infografic pe care il doreste sa il genereze.</p>
 		<figure typeof="sa:Image">
-			<img src="welcome-page.png">
+			<img src="categories-page.png">
 			<figcaption>
-				Prima pagina
+				Pagina cu categorii
 			</figcaption>
 		</figure>
 	<figure typeof="sa:Image">
@@ -74,9 +75,9 @@
 	<figure typeof="sa:Image">
 
 	<p>Ultimul pas este generarea efectiva a infogramei si editarea acesteia. De aici, acesta poate sa o modifice usor din panelul din dreapta.</p>
-			<img src="graph-edit.png">
+			<img src="meniu-infg.png">
 			<figcaption>
-				Editarea Infograficului
+				Editarea Infograficului, in acest caz, editarea unei harti
 			</figcaption>
 		</figure>
 			
@@ -89,16 +90,72 @@
 			
 			<section typeof="sa:MaterialsAndMethods">
 	      <h2>Arhitectura si stocare date</h2>
-				<p> Sursa de date selectata de utilizator este incarcata in memorie, pe partea clientului, nefiind nevoie de un upload efectiv carte un server.
-				</p>
-				<p> Arhitectura aplicatiei este una de tip serverless, aceasta fiind construita ca un SPA (Single Page Aplication). Pentru a afisa diferite sectiuni de continut, site-ul foloseste un mecanism propriu implementat in JavaScript de injectare a continutului fisierelor partiale HTML in interiorul paginii principale(SPA).
-				</p>
+				<p> Sursa de date selectata de utilizator este incarcata in memorie, pe partea clientului, nefiind nevoie de un upload efectiv catre un server.</p>
+				<p> Arhitectura aplicatiei este una de tip serverless, aceasta fiind construita ca un SPA (Single Page Aplication). Pentru a afisa diferite sectiuni de continut, site-ul foloseste un mecanism propriu implementat in JavaScript de injectare a continutului fisierelor partiale HTML in interiorul paginii principale(SPA).</p>
+				<p> Concret, cu fiecare interactiune a utilizatorului cu aplicatia, sunt incarcate in mod dinamic prin AJAX, sectiuni HTML corespunzatoare alegerii facute.</p>
+				<p> Pentru a stoca diferitele optiuni pe care le alege utilizatorul, folosim un script global ce memoreaza intr-o structura, alegerile facute (similar cu un controller pe partea de back-end). Aceste metadate, sunt cuplate apoi cu fisierul uploadat de utilizator si trimise catre un script incarcat dinamic ce va genera infograficul.</p>
+				<figure>
+					<img src="arh-apl.png">
+					<figcaption>
+						Arhitectura aplicatiei
+					</figcaption>
+				</figure>
 			</section>
 			<section typeof="sa:MaterialsAndMethods">
 	      <h2>Versionare</h2>
 				<p>Am folosit <strong>GitHub</strong> pe post de repository al proiectului. Am utilizat
 					<strong>Git Bash</strong> pentru a rezolva conflictele și pentru a face modicări/adăugări/ștergeri
 					a unui sau a mai multor fișiere	din cadrul repository-ului.</p>
+			</section>
+
+			<section typeof="sa:MaterialsAndMethods">
+				<h2>Ghidul de utilizare al aplicatiei</h2>
+				<p>Vom explora metoda prin care un user poate sa genereze o harta pe baza datelor furnizate</p>
+				<p>1. Pe prima pagina utilizatorul este intampinat cu un mesaj de bun venit si apoi este rugat sa continue:</p>
+				<figure>
+						<img src="welcome_page.png">
+						<figcaption>
+							Pagina de bun venit
+						</figcaption>
+				</figure>
+				<p>2. Dupa ce apasa pe continue, este rugat sa aleaga categoria infograficului pe care il doreste; noi vom alege maps:</p>
+				<figure>
+						<img src="categories-page.PNG">
+						<figcaption>
+							Pagina pentru alegerea categoriei
+						</figcaption>
+				</figure>
+				<p>3. Dupa alegerea categoriei harti, utilizatorul este rugat sa introduca regiunea pe care o doreste. Noi vom alege USA. De remarcat interfata minimalista pentru a cautare.</p>
+				<figure>
+						<img src="input_USA.PNG">
+						<figcaption>
+							Pagina cautarea unei resurse.
+						</figcaption>
+				</figure>
+				<p>4. Intrucat pe o harta, sursele de date pot fi de mai multe feluri, aplicatia ofera posibilitatea utilizatorului sa specifice ce fel de date uploadeaza.</p>
+				<figure>
+						<img src="data_cfg.PNG">
+						<figcaption>
+							Pagina de selectare a configuratiei datelor.
+						</figcaption>
+				</figure>
+				<p>5. In acest moment, utilizatorul poate selecta una din sursele de date prezentate pentru a genera infograficul, noi vom selecta un csv ce contine populatia Statelor Unite in ficare stat.</p>
+				<figure>
+						<img src="dat_selection.PNG">
+						<figcaption>
+							Pagina de selectare a surselor de date.
+						</figcaption>
+				</figure>
+
+				<p>6. Utilizatorul poate observa infograficul generat din csv-ul uploadad. Harta contine pe o scara de la galben la verde, cat de populat este un stat american.</p>
+				<figure>
+						<img src="chart_editor.PNG">
+						<figcaption>
+							Pagina de modificare a infograficului.
+						</figcaption>
+				</figure>
+
+
 			</section>
 
 		</article>

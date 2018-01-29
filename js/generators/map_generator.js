@@ -27,9 +27,10 @@ function cursorPoint(evt){
     var pt = svg.createSVGPoint();
     
     pt.x = evt.clientX;
-    pt.y = evt.clientY + 500;
+    pt.y = evt.clientY + 30;
 
     transfom = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return transfom;
 }
 
 function getRemoteResourceSVG(containerSelector, partialUrl, callback){
