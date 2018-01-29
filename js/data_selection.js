@@ -22,7 +22,7 @@ function uploadSuccessfull(uploadedData){
 }
 
 function csvTojs(csv) {
-    var chartColumns = ["Tag","Count","color"];
+    var chartColumns = ["name","count","color"];
     var mapColumns = ["Tag","Count"];
     var headers = null;
     if(metadata_info.category == "chart"){

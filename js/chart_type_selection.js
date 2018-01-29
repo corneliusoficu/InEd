@@ -10,3 +10,4 @@ for(var i = 0; i < chart_types.length ;i ++){
 	    );
 	}
 }
+
