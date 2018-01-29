@@ -54,11 +54,16 @@ h2{
 
 
 #infographic-editor .drawing-surface{
+   -webkit-transition: width 1s;
+    transition: width 1s;
     position: absolute;
     top: 0px;
     left: 10px;
     bottom: 0px;
     width: calc( 100% - 20px);
+}
+    #infographic-editor .drawing-surface-thin{
+    width: calc( 80% - 20px);
 }
 
     #infographic-editor .drawing-surface-fade{ 
@@ -80,19 +85,18 @@ h2{
 
 
 #infographic-editor .data-editor{
-    -webkit-transition: top 1s;
-    transition: top 1s;
+   -webkit-transition: right 1s;
+    transition: right 1s;
     position: absolute;
-    top: 430px;
-    bottom: 20px;
-    left: 13%;
+    top: 0px;
+    right: -389px;
+    width: calc( 20% - 10px);
+    height: 100%;
     opacity: 0.5;
     background-color: #fbc035;
-    width: 70%;
-    margin: 20px;
 }
 #infographic-editor .data-editor-opened{
-    top: 20px;
+    right: 10px;
 }
 
 svg{
@@ -104,6 +108,26 @@ svg{
     left: 0;
     right: 0;
     margin: auto;
+}
+
+@media screen and (max-width: 630px){
+    #infographic-editor .drawing-surface-thin{
+        display: none;
+    }
+    #infographic-editor .data-editor{
+        width: calc(100% - 20px);
+    }
+
+}
+
+@media screen and (min-width : 630px) and (max-width: 1060px){
+    #infographic-editor .drawing-surface-thin{
+        width: calc( 100% - 230px);
+    }
+    #infographic-editor .data-editor{
+        width:200px;
+    }
+
 }
 
 @media screen and (max-width: 480px){

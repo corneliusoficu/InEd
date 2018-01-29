@@ -29,6 +29,7 @@ document.getElementById('export-draw').addEventListener('click', function() {
 
 document.getElementById('edit-data-button').onclick = function(){
 	document.querySelector('.data-editor').className+=" "+"data-editor-opened";
+	document.querySelector('.drawing-surface').className+=" "+"drawing-surface-thin";
 
 };
 
