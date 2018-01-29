@@ -137,6 +137,9 @@ function generate(information, container){
     generateMap(information);
     createTooltip();
     addTooltipEvents(information.data);
+    document.querySelector('svg').setAttribute('height','100%');
+    document.querySelector('svg').setAttribute('width','100%');
+    document.querySelector('svg').setAttribute('viewBox','0 0 800 800');
 }
 
 var tooltip;

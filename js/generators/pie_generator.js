@@ -81,30 +81,21 @@ function calculateSectors(data,size) {
     return sectors
 }
 
-function renderPieChart(data,canvas,size){
-    sectors = calculateSectors(data,size);
+function generate(information,container){
+    sectors = calculateSectors(information.data,500);
     var newSVG = document.createElementNS( "http://www.w3.org/2000/svg","svg" );
-    canvas.appendChild(newSVG);
+    document.querySelector(container).appendChild(newSVG);
     sectors.map( function(sector) {
 
         var newSector = document.createElementNS( "http://www.w3.org/2000/svg","path" );
         newSector.setAttributeNS(null, 'fill', sector.color);
         newSector.setAttributeNS(null, 'd', 'M' + sector.L + ',' + sector.L + ' L' + sector.L + ',0 A' + sector.L + ',' + sector.L + ' 0 ' + sector.arcSweep + ',1 ' + sector.X + ', ' + sector.Y + ' z');
         newSector.setAttributeNS(null, 'transform', 'rotate(' + sector.R + ', '+ sector.L+', '+ sector.L+')');
-
         newSVG.appendChild(newSector);
+        newSVG.setAttribute('height','100%');
+        newSVG.setAttribute('width','100%');
+        newSVG.setAttribute('viewBox','0 0 500 500');
     })
-
-    
-    updatedData = {}
-    for(var i = 0 ; i < sectors.length ; i++){
-        updatedData[sectors[i].label] = {
-            label:sectors[i].label,
-            count:sectors[i].count,
-            color:sectors[i].color
-        }
-    }
-    return updatedData;
 }
 
 
