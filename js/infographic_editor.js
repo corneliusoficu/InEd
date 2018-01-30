@@ -57,17 +57,14 @@ document.getElementById('restart-draw-button').onclick = function(){
 	completeInformation.data = JSON.parse(completeInformation.metadata.text);
 	generate(completeInformation, '.drawing-surface-content');
 };
-// document.getElementById('update-infographic-button').onclick = function(){
-// 	generate(completeInformation, '.drawing-surface-content');
-// };
 
-// function downloadCanvas(link, canvasId, filename) {
-//     link.href = document.getElementById(canvasId).toDataURL();
-//     link.download = filename;
-// }
-// document.getElementById('export-draw').addEventListener('click', function() {
-// 	canvg(document.getElementById('print-canvas'), document.getElementsByClassName('drawing-surface-content')[0].innerHTML);
-//     downloadCanvas(this, 'print-canvas', 'test.png');
-// }, false);
+function downloadCanvas(link, canvasId, filename) {
+    link.href = document.getElementById(canvasId).toDataURL();
+    link.download = filename;
+}
+document.getElementById('export-draw-button').addEventListener('click', function() {
+	canvg(document.getElementById('print-canvas'), document.getElementsByClassName('drawing-surface-content')[0].innerHTML);
+    downloadCanvas(this, 'print-canvas', 'inedGraphic.png');
+}, false);
 
 

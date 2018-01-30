@@ -54,7 +54,6 @@ h2{
 
 
 #infographic-editor .drawing-surface{
-    display: none;
    -webkit-transition: width 1s;
     transition: width 1s;
     position: absolute;
@@ -86,6 +85,7 @@ h2{
 
 
 #infographic-editor .data-editor{
+    display: none;
    -webkit-transition: right 1s;
     transition: right 1s;
     position: absolute;
@@ -95,7 +95,6 @@ h2{
     height: 100%;
     opacity: 0.5;
     background-color: #fbc035;
-    overflow-y: scroll;
 }
     #infographic-editor .data-editor-table .data-row{
         display: -webkit-flex; /* Safari */
@@ -115,12 +114,10 @@ h2{
         padding: 0;
     }
     #infographic-editor .data-editor-table .data-row .count-input{
-        width: 100px;
+        width: 60px;
     }
     #map-editor-table{
-        margin-top: 70px;
-        width: 70%;
-        margin-left: 70px;
+        width: 60%;
     }
     #map-editor-table .data-row{
         border-top: 1px solid grey;

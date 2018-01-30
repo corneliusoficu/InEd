@@ -3,8 +3,8 @@ var svg;
 var dataGroup;
 
 var CIRCLE_RADIUS = 4;
-var zoomX = 1;
-var zoomY = 1;
+var zoomX = 1.5;
+var zoomY = 1.5;
 
 function drawLineAxis(x1, x2, y1, y2){
     var newLineGroup = document.createElementNS(SVG_URL, "g");
@@ -124,7 +124,7 @@ function createGraph(information, container){
 
     svg.setAttribute('height','100%');
     svg.setAttribute('width','100%');
-    svg.setAttribute('viewBox','0 0 1024 500');
+    svg.setAttribute('viewBox','0 0 300 300');
 
     applyStatisticalSeparation(information);
 
@@ -145,6 +145,7 @@ function createGraph(information, container){
 }
 
 function generate(information, container){
+    document.querySelector(container).innerHTML = "";
     svg = document.createElementNS( SVG_URL, "svg" );
     createGraph(information, container);
     
@@ -167,7 +168,6 @@ var backupPoints;
 
 function zoomInYGraph(points, container){
     zoomY += 0.5;
-    console.log(zoomX);
     clearInner(svg);
     var clonedPoints = deepCopy(points);
     createGraph(clonedPoints, container);
