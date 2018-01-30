@@ -85,6 +85,7 @@ h2{
 
 
 #infographic-editor .data-editor{
+    overflow-y:scroll;
     display: none;
    -webkit-transition: right 1s;
     transition: right 1s;
